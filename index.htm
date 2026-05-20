@@ -24,85 +24,23 @@
 
     <section class="hero-dota">
         <div class="smoke-overlay"></div>
-        <section class="hero-dota">
-        <div class="smoke-overlay"></div>
         <div class="container hero-center">
-            
+
             <h2 class="choice-title">КАКОЙ ПУТЬ ВЫ ВЫБЕРЕТЕ?</h2>
 
-            ```
-*(Остальной код файла оставьте без изменений)*
-
----
-
-### Шаг 2. Обновляем `style.css` (Делаем магию фона)
-
-Это самое важное изменение. Откройте `style.css`, найдите секцию `/* Главный экран... */` (примерно со строки **75**) и замените весь код этой секции (включая `@keyframes`) на этот, **обновленный** CSS:
-
-```css
-/* === ОБНОВЛЕНО: Эпичный Полноэкранный Фон === */
-.hero-dota {
-    position: relative;
-    /* Картинка на весь экран, по центру, не повторяется */
-    background: url('dota_hero.jpg') no-repeat center center fixed;
-    background-size: cover;
-    
-    /* Растягиваем секцию на всю высоту окна браузера */
-    height: 100vh;
-    
-    /* Центрируем контент внутри */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    
-    border-bottom: 3px solid #1c242d;
-    padding: 0; /* Убираем падинги, т.к. высота фиксирована */
-}
-
-/* Мягкое затемнение фона, чтобы элементы UI читались лучше */
-.smoke-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Градиент: сверху прозрачно, снизу густой туман Доты */
-    background: linear-gradient(180deg, rgba(12, 15, 18, 0) 0%, rgba(12, 15, 18, 0.4) 50%, rgba(12, 15, 18, 1) 100%);
-    z-index: 1;
-}
-
-/* Убеждаемся, что контент лежит поверх фона */
-.hero-center {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-}
-
-/* ИЗМЕНЕНО: Старый стиль .glow-text и @keyframes удален, он больше не нужен */
-
-/* Заголовок выбора чуть опустим и сделаем больше */
-.choice-title {
-    font-family: 'Cinzel', serif;
-    font-size: 2.2rem; /* Сделали больше */
-    color: #ffffff;
-    margin-bottom: 50px;
-    letter-spacing: 3px;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.9); /* Жирная тень для читаемости */
-}
             <div class="decision-grid">
                 
                 <div class="decision-card solo-zone">
                     <div class="card-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
                     <h3>ИНДИВИДУАЛЬНЫЙ ТРЕК</h3>
-                    <p>Максимальный фокус. Путь лидера и прокачка соло-скиллов.</p>
+                    <p>Максимальный фокус. Путь лидера и жесткая прокачка соло-скиллов.</p>
                     <a href="#solo-track" class="btn-choice solo-btn">Solo Queue</a>
                 </div>
 
                 <div class="decision-card team-zone">
                     <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
                     <h3>ГРУППОВОЙ РЕЙД</h3>
-                    <p>Синергия. Командное взаимодействие и живое общение.</p>
+                    <p>Синергия. Командное взаимодействие, тимплей и живое общение.</p>
                     <a href="#group-raid" class="btn-choice team-btn">Team Fight</a>
                 </div>
 
@@ -122,17 +60,17 @@
                 <div class="artifact-card">
                     <div class="artifact-img"><i class="fas fa-flask"></i></div>
                     <h3>🗣️ Эликсир Речи (Clarity)</h3>
-                    <p>80% времени урока говорите вы. Снимаем безмолвие (silence) и ломаем языковой барьер.</p>
+                    <p>80% времени урока говорите вы. Снимаем безмолвие (silence) и ломаем языковой барьер раз и навсегда.</p>
                 </div>
                 <div class="artifact-card">
                     <div class="artifact-img"><i class="fas fa-shield-cat"></i></div>
                     <h3>🎯 Защита Цели (Aegis)</h3>
-                    <p>Программа под ваши задачи: релокация, собеседования, сдача TOEFL/ЕГЭ без потери нервов.</p>
+                    <p>Программа строго под ваши задачи: релокация, собеседования, сдача TOEFL/ЕГЭ без потери нервных клеток.</p>
                 </div>
                 <div class="artifact-card">
                     <div class="artifact-img"><i class="fas fa-bolt"></i></div>
                     <h3>⚡ Руна Скорости (Haste)</h3>
-                    <p>Разбор живого английского языка по актуальным сериалам, мемам и подкастам вместо скучных мануалов.</p>
+                    <p>Разбор живого английского языка по актуальным сериалам, мемам и подкастам вместо скучных пыльных учебников.</p>
                 </div>
             </div>
         </div>
@@ -147,15 +85,15 @@
                     <div class="item-tier">TIER 1 // SOLO PRESTIGE</div>
                     <h3>Индивидуальное занятие</h3>
                     <div class="gold-price">3 000 ₽ <span>/ 60 минут</span></div>
-                    <p class="item-desc">Персональный тренинг с Мастером. Полная подстройка под ваш темп, детальный разбор ошибок и кастомная траектория движения.</p>
+                    <p class="item-desc">Персональный тренинг с Мастером. Полная подстройка под ваш темп, детальный разбор ошибок и кастомная траектория движения к вашей цели.</p>
                     <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-buy">ЗАПУСТИТЬ СОЛО СЕШН</a>
                 </div>
 
                 <div id="group-raid" class="shop-item featured-item">
                     <div class="item-tier">TIER 2 // TEAM CHAMPIONSHIP</div>
                     <h3>Мини-группа (3-5 человек)</h3>
-                    <div class="gold-price">1 499 ₽ <span>/ 60 минут</span></div>
-                    <p class="item-desc">Командный рейд. Погружение в языковую среду через ролевые кейсы, парные дискуссии и постоянный интерактив с тиммейтами.</p>
+                    <div class="gold-price">1 499 ₽ <span>/ 60 minutes</span></div>
+                    <p class="item-desc">Командный рейд. Глубокое погружение в языковую среду через ролевые кейсы, парные дискуссии и постоянный контролируемый интерактив с тиммейтами.</p>
                     <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-buy team-buy">ВСТУПИТЬ В РЕЙД</a>
                 </div>
             </div>
@@ -174,86 +112,10 @@
                         <div class="hero-icon-placeholder design-mirana"><i class="fas fa-moon"></i></div>
                         <div>
                             <h4>Мирана</h4>
-                            <span class="hero-sub">9Б класс / Родитель</span>
+                            <span class="hero-sub">9Б класс / Род. комитет</span>
                         </div>
                     </div>
-                    <p class="review-text">«Артем Олегович - это учитель с которым надо начинать изучение языка! Способен влюбить ребёнка в язык, заинтересовать, замотивировать! 🤗 Мой сын занимался 2-3 года. До сих пор учителя, тестирующие наш уровень, отмечают у ребёнка свободу и отсутствие страха говорить.»</p>
+                    <p class="review-text">«Артем Олегович - это учитель с которым надо начинать изучение языка! Способен влюбить ребёнка в язык, заинтересовать, замотивировать! 🤗 Мой сын занимался 2-3 года. До сих пор учителя, тестирующие наш уровень, отмечают у ребёнка свободу и отсутствие страха говорить. Это очень ценно!»</p>
                 </div>
 
-                <div class="hero-review-card">
-                    <div class="hero-avatar-name">
-                        <div class="hero-icon-placeholder design-rubick"><i class="fas fa-cube"></i></div>
-                        <div>
-                            <h4>Рубик</h4>
-                            <span class="hero-sub">Arcane Student (ЕГЭ / TOEFL)</span>
-                        </div>
-                    </div>
-                    <p class="review-text">«Артем Олегович, Вы вообще легенда! Вы меня не только к ЭГЭ подготовили, но и посодействовали в поиске материалов для сдачи экзамена TOEFL. Вы очень сильно мне помогли с моим переездом в США!! Очень добрый и понимающий учитель.»</p>
-                </div>
-
-                <div class="hero-review-card">
-                    <div class="hero-avatar-name">
-                        <div class="hero-icon-placeholder design-snapfire"><i class="fas fa-gun"></i></div>
-                        <div>
-                            <h4>Снапфайр</h4>
-                            <span class="hero-sub">Опытный родитель</span>
-                        </div>
-                    </div>
-                    <p class="review-text">«Прекрасный педагог! Был учителем в школе у сына в первом и втором классе. Это были увлекательные уроки и отличный результат! А мотивация долларами - отличная фишка :) С удовольствием продолжили бы заниматься индивидуально!»</p>
-                </div>
-
-                <div class="hero-review-card">
-                    <div class="hero-avatar-name">
-                        <div class="hero-icon-placeholder design-jugg"><i class="fas fa-gavel"></i></div>
-                        <div>
-                            <h4>Джаггернаут</h4>
-                            <span class="hero-sub">Старшеклассник (Фокус)</span>
-                        </div>
-                    </div>
-                    <p class="review-text">«Один из самых запоминающихся преподавателей из моей школьной жизни. С ним можно продуктивно поработать, но и просто хорошо провести время, где кстати Артём Олегович также старается общаться на Английском языке, развивая навыки живого общения!»</p>
-                </div>
-
-                <div class="hero-review-card arcana-review">
-                    <div class="hero-avatar-name">
-                        <div class="hero-icon-placeholder design-warlock"><i class="fas fa-book-dead"></i></div>
-                        <div>
-                            <h4>Варлок</h4>
-                            <span class="hero-sub">Grandmaster of Ancient Languages</span>
-                        </div>
-                    </div>
-                    <p class="review-text">"Artem Olegovich is clearly a fabulous teacher, who can courage any student to study his subject with passion. Actually, I have never seen a real professional who would be not only a great teacher, but a cheerful and nice person as well. Highly recommend!"</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="guild-dota">
-        <div class="container text-center">
-            
-            <div class="guild-box">
-                <h2>ПРИСОЕДИНЯЙТЕСЬ К ГИЛЬДИИ</h2>
-                <h3>📢 TELEGRAM-КАНАЛ: <span class="gold-accent">EnglishGaffer</span></h3>
-                <p>Разборы актуальной лексики, мемы, живой английский без цензуры и занудства.</p>
-                <a href="https://telegram.me/EnglishGaffer" target="_blank" class="btn-guild-tg">ПОДКЛЮЧИТЬСЯ К КАНАЛУ</a>
-            </div>
-
-            <div class="final-contacts">
-                <p>Остались вопросы по подбору роли? Свяжитесь напрямую:</p>
-                <div class="contact-row-dota">
-                    <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-contact-link"><i class="fab fa-telegram"></i> @GoldenTeacher13</a>
-                    <a href="tel:+79689055378" class="btn-contact-link phone-gold"><i class="fas fa-phone"></i> +7 968 905 5378</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2026 АНГЛИЙСКИЙ С АРТЕМОМ КОРОВКИНЫМ. ВСЕ ПРАВА ЗАЩИЩЕНЫ. DESIGNED VIA VIBECODING.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+                <div class
