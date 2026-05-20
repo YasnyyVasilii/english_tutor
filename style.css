@@ -1,4 +1,4 @@
-/* Общие стили и сброс настроек браузера */
+/* Базовые настройки проекта */
 * {
     margin: 0;
     padding: 0;
@@ -38,7 +38,7 @@ header .container {
 .logo {
     font-size: 1.35rem;
     font-weight: 700;
-    color: #1e3a8a; /* Deep blue */
+    color: #1e3a8a;
 }
 
 nav a {
@@ -60,18 +60,12 @@ nav .btn-nav {
     border-radius: 6px;
 }
 
-nav .btn-nav:hover {
-    background-color: #1d4ed8;
-    color: white;
-}
-
 /* Главный экран */
 .hero {
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
     padding: 100px 0;
 }
 
-/* ИЗМЕНЕНО: Контейнер для текста и персонажа (теперь flex) */
 .hero-content {
     display: flex;
     justify-content: space-between;
@@ -81,14 +75,13 @@ nav .btn-nav:hover {
 
 .hero-text {
     flex: 1;
-    text-align: left; /* Текст слева */
 }
 
 .hero-content h1 {
     font-size: 2.8rem;
     color: #1e3a8a;
     margin-bottom: 20px;
-    max-width: 600px; /* Уменьшили макс. ширину */
+    max-width: 600px;
 }
 
 .hero-content p {
@@ -115,40 +108,33 @@ nav .btn-nav:hover {
     background-color: #1d4ed8;
 }
 
-/* === ИЗМЕНЕНО: Стили для анимированного персонажа === */
+/* Анимация персонажа */
 .hero-character-container {
-    flex: 0 0 300px; /* Фиксированная ширина персонажа */
-    position: relative; /* Чтобы иконка позиционировалась поверх */
+    flex: 0 0 300px;
+    position: relative;
     cursor: pointer;
+    height: 300px;
 }
 
-/* Общие стили для обеих картинок */
 .hero-character-container img {
     width: 100%;
     height: auto;
-    border-radius: 50%; /* Сделали картинку круглой */
+    border-radius: 50%;
     border: 5px solid white;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: opacity 0.3s ease-in-out; /* Плавное переключение */
-    position: absolute; /* Одна поверх другой */
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
     top: 0;
     left: 0;
 }
 
-/* Скрываем картинку со знаком пис по умолчанию */
 .peace-character {
     opacity: 0;
 }
 
-/* Высота контейнера (чтобы он не схлопывался, т.к. картинки absolute) */
-.hero-character-container {
-    height: 300px;
-}
-
-/* Стили для иконки-триггера */
 .animation-icon {
     position: absolute;
-    bottom: -10px; /* Снизу картинки */
+    bottom: -10px;
     right: -10px;
     background-color: #1e3a8a;
     color: white;
@@ -163,23 +149,19 @@ nav .btn-nav:hover {
     transition: transform 0.3s ease;
 }
 
-/* === ИЗМЕНЕНО: Магия анимации (Ховер) === */
-
-/* Наводим на иконку (или на весь контейнер) */
 .hero-character-container:hover .peace-character {
-    opacity: 1; /* Показываем 'пис' */
+    opacity: 1;
 }
 
 .hero-character-container:hover .folded-character {
-    opacity: 0; /* Скрываем 'сложенные руки' */
+    opacity: 0;
 }
 
-/* При наведении иконка чуть увеличивается */
 .hero-character-container:hover .animation-icon {
     transform: scale(1.1);
 }
 
-/* Секция "О себе" / Преимущества */
+/* Преимущества */
 .about {
     padding: 80px 0;
     background-color: white;
@@ -211,7 +193,7 @@ h2 {
     color: #0f172a;
 }
 
-/* Тарифы */
+/* Цены */
 .services {
     padding: 80px 0;
     background-color: #f8fafc;
@@ -232,12 +214,10 @@ h2 {
     border-radius: 12px;
     border: 1px solid #e2e8f0;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
 .price-card.featured {
     border: 2px solid #2563eb;
-    position: relative;
 }
 
 .price-card h3 {
@@ -245,29 +225,97 @@ h2 {
     margin-bottom: 15px;
 }
 
-.price .price {
+.price-card .price {
     font-size: 1.8rem;
     font-weight: bold;
     color: #2563eb;
     margin-bottom: 20px;
 }
 
-/* Контакты */
-.contact {
+.price-card .time {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: normal;
+}
+
+/* ОСНОВА ДЛЯ ОТЗЫВОВ */
+.reviews {
     padding: 80px 0;
     background-color: white;
+}
+
+.reviews-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.review-item {
+    background-color: #f8fafc;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 5px solid #2563eb; /* Синяя полоса сбоку для акцента */
+}
+
+.review-item.lang-en {
+    border-left: 5px solid #10b981; /* Зеленая полоса для англоязычного отзыва */
+}
+
+.review-meta {
+    margin-bottom: 10px;
+    color: #1e3a8a;
+    font-size: 1.1rem;
+}
+
+/* КОНТАКТЫ И ТЕЛЕГРАМ КАНАЛ */
+.contact {
+    padding: 80px 0;
+    background-color: #f8fafc;
     text-align: center;
 }
 
-.contact p {
-    margin-bottom: 30px;
-    color: #4b5563;
-    font-size: 1.1rem;
+.tg-channel-block {
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #7dd3fc;
+}
+
+.tg-channel-block h3 {
+    color: #0369a1;
+    margin-bottom: 10px;
+}
+
+.btn-channel {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #0284c7;
+    color: white;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.contact-text {
+    font-size: 1.25rem;
+    margin-bottom: 25px;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .btn-tg {
     display: inline-block;
-    background-color: #0088cc;
+    background-color: #24a1de;
     color: white;
     text-decoration: none;
     padding: 14px 28px;
@@ -275,8 +323,15 @@ h2 {
     font-weight: 600;
 }
 
-.btn-tg:hover {
-    background-color: #0077b3;
+.btn-phone {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #1e3a8a;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 2px solid #1e3a8a;
 }
 
 /* Подвал */
@@ -285,5 +340,4 @@ footer {
     color: #94a3b8;
     padding: 30px 0;
     text-align: center;
-    font-size: 0.9rem;
 }
