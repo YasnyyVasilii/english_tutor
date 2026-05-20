@@ -69,25 +69,33 @@ nav .btn-nav:hover {
 .hero {
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
     padding: 100px 0;
-    text-align: center;
+}
+
+/* ИЗМЕНЕНО: Контейнер для текста и персонажа (теперь flex) */
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left; /* Текст слева */
 }
 
 .hero-content h1 {
     font-size: 2.8rem;
     color: #1e3a8a;
     margin-bottom: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 600px; /* Уменьшили макс. ширину */
 }
 
 .hero-content p {
     font-size: 1.25rem;
     color: #4b5563;
     margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 500px;
 }
 
 .btn-main {
@@ -105,6 +113,70 @@ nav .btn-nav:hover {
 
 .btn-main:hover {
     background-color: #1d4ed8;
+}
+
+/* === ИЗМЕНЕНО: Стили для анимированного персонажа === */
+.hero-character-container {
+    flex: 0 0 300px; /* Фиксированная ширина персонажа */
+    position: relative; /* Чтобы иконка позиционировалась поверх */
+    cursor: pointer;
+}
+
+/* Общие стили для обеих картинок */
+.hero-character-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Сделали картинку круглой */
+    border: 5px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease-in-out; /* Плавное переключение */
+    position: absolute; /* Одна поверх другой */
+    top: 0;
+    left: 0;
+}
+
+/* Скрываем картинку со знаком пис по умолчанию */
+.peace-character {
+    opacity: 0;
+}
+
+/* Высота контейнера (чтобы он не схлопывался, т.к. картинки absolute) */
+.hero-character-container {
+    height: 300px;
+}
+
+/* Стили для иконки-триггера */
+.animation-icon {
+    position: absolute;
+    bottom: -10px; /* Снизу картинки */
+    right: -10px;
+    background-color: #1e3a8a;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+/* === ИЗМЕНЕНО: Магия анимации (Ховер) === */
+
+/* Наводим на иконку (или на весь контейнер) */
+.hero-character-container:hover .peace-character {
+    opacity: 1; /* Показываем 'пис' */
+}
+
+.hero-character-container:hover .folded-character {
+    opacity: 0; /* Скрываем 'сложенные руки' */
+}
+
+/* При наведении иконка чуть увеличивается */
+.hero-character-container:hover .animation-icon {
+    transform: scale(1.1);
 }
 
 /* Секция "О себе" / Преимущества */
