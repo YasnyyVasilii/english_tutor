@@ -24,16 +24,72 @@
 
     <section class="hero-dota">
         <div class="smoke-overlay"></div>
+        <section class="hero-dota">
+        <div class="smoke-overlay"></div>
         <div class="container hero-center">
             
-            <h1 class="glow-text">PRACTICE MAKES PERFECT</h1>
-            
-            <div class="main-portrait-frame">
-                <img src="dota_hero.jpg" alt="Artem Korovkin English Master" class="main-portrait">
-            </div>
-
             <h2 class="choice-title">КАКОЙ ПУТЬ ВЫ ВЫБЕРЕТЕ?</h2>
 
+            ```
+*(Остальной код файла оставьте без изменений)*
+
+---
+
+### Шаг 2. Обновляем `style.css` (Делаем магию фона)
+
+Это самое важное изменение. Откройте `style.css`, найдите секцию `/* Главный экран... */` (примерно со строки **75**) и замените весь код этой секции (включая `@keyframes`) на этот, **обновленный** CSS:
+
+```css
+/* === ОБНОВЛЕНО: Эпичный Полноэкранный Фон === */
+.hero-dota {
+    position: relative;
+    /* Картинка на весь экран, по центру, не повторяется */
+    background: url('dota_hero.jpg') no-repeat center center fixed;
+    background-size: cover;
+    
+    /* Растягиваем секцию на всю высоту окна браузера */
+    height: 100vh;
+    
+    /* Центрируем контент внутри */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    border-bottom: 3px solid #1c242d;
+    padding: 0; /* Убираем падинги, т.к. высота фиксирована */
+}
+
+/* Мягкое затемнение фона, чтобы элементы UI читались лучше */
+.smoke-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Градиент: сверху прозрачно, снизу густой туман Доты */
+    background: linear-gradient(180deg, rgba(12, 15, 18, 0) 0%, rgba(12, 15, 18, 0.4) 50%, rgba(12, 15, 18, 1) 100%);
+    z-index: 1;
+}
+
+/* Убеждаемся, что контент лежит поверх фона */
+.hero-center {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* ИЗМЕНЕНО: Старый стиль .glow-text и @keyframes удален, он больше не нужен */
+
+/* Заголовок выбора чуть опустим и сделаем больше */
+.choice-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem; /* Сделали больше */
+    color: #ffffff;
+    margin-bottom: 50px;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.9); /* Жирная тень для читаемости */
+}
             <div class="decision-grid">
                 
                 <div class="decision-card solo-zone">
