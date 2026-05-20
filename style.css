@@ -101,35 +101,45 @@ nav a:hover {
     background: linear-gradient(180deg, #c53030 0%, #7f1818 100%);
 }
 
-/* Эпичный полноэкранный блок с фоном-арканой */
+/* === ОБНОВЛЕНО: Четкий, Полноэкранный Фон с надписью === */
 .hero-dota {
     position: relative;
-    background: url('dota_hero.jpg') no-repeat center center;
+    /* Используем cover, чтобы быть на весь экран, но сдвигаем вверх, чтобы показать надпись */
+    background: url('dota_hero.jpg') no-repeat top center fixed;
     background-size: cover;
+    
+    /* Растягиваем секцию на всю высоту окна браузера */
     height: 100vh;
+    
+    /* Центрируем контент внутри */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    
     border-bottom: 3px solid #1c242d;
-    padding-top: 70px; /* Отступ под фиксированную шапку */
+    padding: 0; /* Убираем падинги, т.к. высота фиксирована */
 }
 
-/* Дымный градиент для идеальной читаемости интерфейса поверх фото */
+/* Мягкое затемнение фона, чтобы элементы UI читались лучше */
 .smoke-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(12, 15, 18, 0.2) 0%, rgba(12, 15, 18, 0.5) 50%, rgba(12, 15, 18, 1) 100%);
+    /* Градиент: сверху прозрачно, снизу густой туман Доты, чтобы скрыть поля, если они появятся */
+    background: linear-gradient(180deg, rgba(12, 15, 18, 0) 0%, rgba(12, 15, 18, 0.4) 50%, rgba(12, 15, 18, 1) 100%);
     z-index: 1;
 }
 
+/* Убеждаемся, что контент лежит поверх фона */
 .hero-center {
     position: relative;
     z-index: 2;
     width: 100%;
+    /* Опустим контент, чтобы он не перекрывал центральную часть картинки */
+    margin-top: auto; 
 }
 
 .choice-title {
@@ -444,7 +454,7 @@ nav a:hover {
     max-width: 700px;
     margin: 0 auto 50px auto;
     background-color: #111519;
-    border: 1px solid #2c353f;
+    border: 2px solid #2c353f;
     padding: 40px;
     border-radius: 4px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
