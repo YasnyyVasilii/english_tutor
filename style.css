@@ -1,343 +1,544 @@
-/* Базовые настройки проекта */
+/* Игровая дизайн-система Dota 2 Style */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     scroll-behavior: smooth;
 }
 
 body {
-    color: #333;
-    line-height: 1.6;
-    background-color: #fcfcfc;
+    background-color: #0c0f12; /* Фирменный глубокий темно-серый цвет Доты */
+    color: #b3b9c1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Шапка сайта */
+.text-center { text-align: center; }
+.gold-accent { color: #e5c173; }
+
+/* Стили заголовков секций */
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: #e5c173; /* Золотой дотерский цвет */
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e5c173, transparent);
+    margin: 15px auto 0 auto;
+}
+
+/* Навигация */
 header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background-color: rgba(17, 21, 25, 0.95);
+    border-bottom: 2px solid #2c353f;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-header .container {
+.header-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 15px 20px;
 }
 
-.logo {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #1e3a8a;
+.logo-dota {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.logo-dota span {
+    color: #e5c173;
 }
 
 nav a {
     text-decoration: none;
-    color: #4b5563;
+    color: #9aa3ae;
+    font-size: 0.9rem;
+    font-weight: 600;
     margin-left: 25px;
-    font-weight: 500;
+    letter-spacing: 1px;
     transition: color 0.3s;
 }
 
 nav a:hover {
-    color: #1e3a8a;
+    color: #e5c173;
 }
 
-nav .btn-nav {
-    background-color: #1e3a8a;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
+.btn-nav-dota {
+    background: linear-gradient(180deg, #a82525 0%, #611111 100%);
+    border: 1px solid #e5c173;
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 3px;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
+    text-shadow: 1px 1px 2px black;
 }
 
-/* Главный экран */
-.hero {
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    padding: 100px 0;
+.btn-nav-dota:hover {
+    background: linear-gradient(180deg, #c53030 0%, #7f1818 100%);
 }
 
-.hero-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-}
-
-.hero-text {
-    flex: 1;
-}
-
-.hero-content h1 {
-    font-size: 2.8rem;
-    color: #1e3a8a;
-    margin-bottom: 20px;
-    max-width: 600px;
-}
-
-.hero-content p {
-    font-size: 1.25rem;
-    color: #4b5563;
-    margin-bottom: 40px;
-    max-width: 500px;
-}
-
-.btn-main {
-    display: inline-block;
-    background-color: #2563eb;
-    color: white;
-    text-decoration: none;
-    padding: 16px 32px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: background 0.3s;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-}
-
-.btn-main:hover {
-    background-color: #1d4ed8;
-}
-
-/* Анимация персонажа */
-.hero-character-container {
-    flex: 0 0 300px;
+/* Главный экран выбора роли */
+.hero-dota {
     position: relative;
-    cursor: pointer;
-    height: 300px;
-}
-
-.hero-character-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    border: 5px solid white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: opacity 0.3s ease-in-out;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.peace-character {
-    opacity: 0;
-}
-
-.animation-icon {
-    position: absolute;
-    bottom: -10px;
-    right: -10px;
-    background-color: #1e3a8a;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    z-index: 10;
-    transition: transform 0.3s ease;
-}
-
-.hero-character-container:hover .peace-character {
-    opacity: 1;
-}
-
-.hero-character-container:hover .folded-character {
-    opacity: 0;
-}
-
-.hero-character-container:hover .animation-icon {
-    transform: scale(1.1);
-}
-
-/* Преимущества */
-.about {
+    background: radial-gradient(circle, #1a222b 0%, #080b0e 100%);
     padding: 80px 0;
-    background-color: white;
-}
-
-h2 {
-    font-size: 2rem;
+    border-bottom: 3px solid #1c242d;
     text-align: center;
-    color: #1e3a8a;
-    margin-bottom: 50px;
 }
 
-.features {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
+/* Эффект пульсирующих анимированных букв */
+.glow-text {
+    font-family: 'Cinzel', serif;
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #e1ebf7;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    animation: arcaneGlow 4s ease-in-out infinite;
 }
 
-.feature-card {
-    flex: 1;
-    padding: 30px;
-    background-color: #f8fafc;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
+@keyframes arcaneGlow {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(139, 196, 255, 0.4), 0 0 20px rgba(139, 196, 255, 0.2);
+        opacity: 0.95;
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(147, 197, 253, 0.8), 0 0 40px rgba(147, 197, 253, 0.4);
+        opacity: 1;
+    }
 }
 
-.feature-card h3 {
-    margin-bottom: 15px;
-    color: #0f172a;
+/* Центральная рамка портрета преподавателя */
+.main-portrait-frame {
+    width: 260px;
+    height: 340px;
+    margin: 0 auto 40px auto;
+    border: 3px solid #b59352;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8), 0 0 15px rgba(181, 147, 82, 0.2);
+    background-color: #111519;
+    padding: 5px;
+    transform: rotate(-1deg);
 }
 
-/* Цены */
-.services {
-    padding: 80px 0;
-    background-color: #f8fafc;
+.main-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.price-cards {
+.choice-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+/* Сетка карточек выбора */
+.decision-grid {
     display: flex;
     justify-content: center;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+}
+
+.decision-card {
+    flex: 1;
+    background: #161c23;
+    border: 1px solid #2c353f;
+    padding: 35px 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.decision-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.decision-card p {
+    font-size: 0.95rem;
+    color: #8da1b5;
+    margin-bottom: 25px;
+    min-height: 45px;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* Индивидуальная карточка ховер (Синий Аркан стиль) */
+.solo-zone .card-icon { color: #4ba3ff; }
+.solo-zone:hover {
+    border-color: #4ba3ff;
+    box-shadow: 0 0 20px rgba(75, 163, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Групповая карточка ховер (Красный боевой стиль) */
+.team-zone .card-icon { color: #ff4b4b; }
+.team-zone:hover {
+    border-color: #ff4b4b;
+    box-shadow: 0 0 20px rgba(255, 75, 75, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Игровые кнопки карточек */
+.btn-choice {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 12px 0;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.solo-btn { background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%); border-bottom: 3px solid #1e40af; }
+.solo-btn:hover { background: #3b82f6; }
+
+.team-btn { background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%); border-bottom: 3px solid #7f1d1d; }
+.team-btn:hover { background: #ef4444; }
+
+/* Кнопка "Бесплатный пробный урок" */
+.lobby-actions {
+    margin-top: 30px;
+}
+
+.btn-lobby-trial {
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(180deg, #e5c173 0%, #b59352 100%);
+    color: #111519 !important;
+    font-weight: 900;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+}
+
+.btn-lobby-trial:hover {
+    transform: scale(1.03);
+    background: linear-gradient(180deg, #f3d798 0%, #cfa85f 100%);
+}
+
+/* Секция "Артефакты" (About) */
+.about-dota {
+    background-color: #080b0e;
+    padding: 80px 0;
+    border-bottom: 2px solid #111519;
+}
+
+.features-dota {
+    display: flex;
     gap: 30px;
-    max-width: 800px;
+}
+
+.artifact-card {
+    flex: 1;
+    background: #111519;
+    border: 1px solid #1c242d;
+    padding: 30px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.artifact-img {
+    font-size: 2.2rem;
+    color: #e5c173;
+    margin-bottom: 20px;
+}
+
+.artifact-card h3 {
+    font-family: 'Cinzel', serif;
+    color: #ffffff;
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+}
+
+.artifact-card p {
+    font-size: 0.95rem;
+    color: #7a8b9e;
+}
+
+/* Секция Магазина (Цены) */
+.shop-dota {
+    background: #0c0f12;
+    padding: 80px 0;
+    border-bottom: 2px solid #1c242d;
+}
+
+.shop-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.price-card {
+.shop-item {
     flex: 1;
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    text-align: center;
+    background: #111519;
+    border: 1px solid #232d38;
+    padding: 40px 30px;
+    border-radius: 4px;
+    position: relative;
 }
 
-.price-card.featured {
-    border: 2px solid #2563eb;
+/* Особый фокус на групповые занятия */
+.featured-item {
+    border: 2px solid #e5c173;
+    box-shadow: 0 0 25px rgba(229, 193, 115, 0.1);
 }
 
-.price-card h3 {
+.item-tier {
+    font-size: 0.75rem;
+    color: #e5c173;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.shop-item h3 {
+    font-family: 'Cinzel', serif;
+    color: white;
     font-size: 1.4rem;
     margin-bottom: 15px;
 }
 
-.price-card .price {
-    font-size: 1.8rem;
+.gold-price {
+    font-size: 2.2rem;
     font-weight: bold;
-    color: #2563eb;
+    color: #e5c173;
     margin-bottom: 20px;
+    font-family: 'Cinzel', serif;
 }
 
-.price-card .time {
+.gold-price span {
     font-size: 1rem;
-    color: #6b7280;
-    font-weight: normal;
+    color: #627384;
+    font-family: 'Inter', sans-serif;
 }
 
-/* ОСНОВА ДЛЯ ОТЗЫВОВ */
-.reviews {
-    padding: 80px 0;
-    background-color: white;
+.item-desc {
+    font-size: 0.95rem;
+    color: #8da1b5;
+    margin-bottom: 35px;
+    line-height: 1.6;
 }
 
-.reviews-list {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.review-item {
-    background-color: #f8fafc;
-    padding: 25px;
-    border-radius: 12px;
-    border-left: 5px solid #2563eb; /* Синяя полоса сбоку для акцента */
-}
-
-.review-item.lang-en {
-    border-left: 5px solid #10b981; /* Зеленая полоса для англоязычного отзыва */
-}
-
-.review-meta {
-    margin-bottom: 10px;
-    color: #1e3a8a;
-    font-size: 1.1rem;
-}
-
-/* КОНТАКТЫ И ТЕЛЕГРАМ КАНАЛ */
-.contact {
-    padding: 80px 0;
-    background-color: #f8fafc;
+.btn-buy {
+    display: block;
     text-align: center;
-}
-
-.tg-channel-block {
-    max-width: 600px;
-    margin: 0 auto 50px auto;
-    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-    padding: 30px;
-    border-radius: 16px;
-    border: 1px solid #7dd3fc;
-}
-
-.tg-channel-block h3 {
-    color: #0369a1;
-    margin-bottom: 10px;
-}
-
-.btn-channel {
-    display: inline-block;
-    margin-top: 15px;
-    background-color: #0284c7;
-    color: white;
     text-decoration: none;
-    padding: 10px 24px;
-    border-radius: 6px;
-    font-weight: 600;
+    background-color: #2c353f;
+    color: white;
+    font-weight: bold;
+    padding: 14px 0;
+    border-radius: 2px;
+    border: 1px solid #4f5d6e;
+    font-size: 0.9rem;
+    transition: all 0.3s;
 }
 
-.contact-text {
-    font-size: 1.25rem;
-    margin-bottom: 25px;
+.btn-buy:hover {
+    background-color: #2563eb;
+    border-color: #60a5fa;
 }
 
-.contact-buttons {
+.team-buy:hover {
+    background-color: #dc2626;
+    border-color: #f87171;
+}
+
+/* Секция Героев (Отзывы) */
+.reviews-dota {
+    background-color: #080b0e;
+    padding: 80px 0;
+}
+
+.heroes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Стилизация под аркану для англоязычного отзыва */
+.arcana-review {
+    grid-column: span 2;
+    border: 1px solid #a855f7 !important;
+    background: linear-gradient(135deg, #111519 0%, #1e112c 100%) !important;
+}
+
+.hero-review-card {
+    background: #111519;
+    border: 1px solid #1c242d;
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.hero-avatar-name {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.hero-icon-placeholder {
+    width: 45px;
+    height: 45px;
+    border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
+    color: white;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Игровые цвета для персонажей */
+.design-mirana { background-color: #1e3a8a; border: 1px solid #3b82f6; }
+.design-rubick { background-color: #065f46; border: 1px solid #10b981; }
+.design-snapfire { background-color: #9a3412; border: 1px solid #f97316; }
+.design-jugg { background-color: #991b1b; border: 1px solid #ef4444; }
+.design-warlock { background-color: #581c87; border: 1px solid #a855f7; }
+
+.hero-avatar-name h4 {
+    font-family: 'Cinzel', serif;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.hero-sub {
+    font-size: 0.8rem;
+    color: #566f8a;
+}
+
+.review-text {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #9cb1c9;
+    line-height: 1.6;
+}
+
+/* Секция Гильдии (Контакты и Канал) */
+.guild-dota {
+    background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
+    padding: 80px 0;
+    border-top: 2px solid #1c242d;
+}
+
+.guild-box {
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    background-color: #111519;
+    border: 1px solid #2c353f;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.guild-box h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.guild-box p {
+    color: #7a8b9e;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.btn-guild-tg {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+    color: white;
+    font-weight: bold;
+    padding: 14px 35px;
+    border-radius: 2px;
+    border-bottom: 3px solid #075985;
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 2px black;
+}
+
+.btn-guild-tg:hover { background: #0ea5e9; }
+
+.final-contacts p {
+    margin-bottom: 20px;
+    color: #cbd5e1;
+}
+
+.contact-row-dota {
+    display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
-.btn-tg {
-    display: inline-block;
-    background-color: #24a1de;
+.btn-contact-link {
+    text-decoration: none;
+    background-color: #111519;
+    border: 1px solid #2c353f;
     color: white;
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 8px;
+    padding: 14px 30px;
     font-weight: 600;
+    font-size: 1rem;
+    border-radius: 2px;
+    transition: all 0.3s;
 }
 
-.btn-phone {
-    display: inline-block;
-    background-color: #ffffff;
-    color: #1e3a8a;
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-weight: 600;
-    border: 2px solid #1e3a8a;
+.btn-contact-link:hover {
+    border-color: #e5c173;
+    color: #e5c173;
 }
 
-/* Подвал */
+.phone-gold {
+    border-color: #b59352;
+    color: #e5c173;
+}
+
+/* Игровой Футер */
 footer {
-    background-color: #0f172a;
-    color: #94a3b8;
+    background-color: #06080a;
+    border-top: 1px solid #111519;
     padding: 30px 0;
-    text-align: center;
+    font-size: 0.8rem;
+    color: #475569;
+    letter-spacing: 1px;
 }
