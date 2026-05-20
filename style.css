@@ -1,4 +1,4 @@
-/* Игровая дизайн-система Dota 2 Style */
+/* Базовые глобальные сбросы и настройки темы */
 * {
     margin: 0;
     padding: 0;
@@ -22,11 +22,11 @@ body {
 .text-center { text-align: center; }
 .gold-accent { color: #e5c173; }
 
-/* Стили заголовков секций */
+/* Общий стиль для игровых фэнтези-заголовков */
 .section-title {
     font-family: 'Cinzel', serif;
     font-size: 2.2rem;
-    color: #e5c173; /* Золотой дотерский цвет */
+    color: #e5c173; /* Благородный золотой */
     text-align: center;
     letter-spacing: 2px;
     margin-bottom: 50px;
@@ -43,12 +43,14 @@ body {
     margin: 15px auto 0 auto;
 }
 
-/* Навигация */
+/* Игровая фиксированная шапка (Header) */
 header {
     background-color: rgba(17, 21, 25, 0.95);
     border-bottom: 2px solid #2c353f;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
+    left: 0;
     z-index: 100;
 }
 
@@ -99,80 +101,64 @@ nav a:hover {
     background: linear-gradient(180deg, #c53030 0%, #7f1818 100%);
 }
 
-/* Главный экран выбора роли */
+/* Эпичный полноэкранный блок с фоном-арканой */
 .hero-dota {
     position: relative;
-    background: radial-gradient(circle, #1a222b 0%, #080b0e 100%);
-    padding: 80px 0;
-    border-bottom: 3px solid #1c242d;
+    background: url('dota_hero.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    border-bottom: 3px solid #1c242d;
+    padding-top: 70px; /* Отступ под фиксированную шапку */
 }
 
-/* Эффект пульсирующих анимированных букв */
-.glow-text {
-    font-family: 'Cinzel', serif;
-    font-size: 3.8rem;
-    font-weight: 900;
-    color: #e1ebf7;
-    letter-spacing: 4px;
-    margin-bottom: 30px;
-    animation: arcaneGlow 4s ease-in-out infinite;
-}
-
-@keyframes arcaneGlow {
-    0%, 100% {
-        text-shadow: 0 0 10px rgba(139, 196, 255, 0.4), 0 0 20px rgba(139, 196, 255, 0.2);
-        opacity: 0.95;
-    }
-    50% {
-        text-shadow: 0 0 25px rgba(147, 197, 253, 0.8), 0 0 40px rgba(147, 197, 253, 0.4);
-        opacity: 1;
-    }
-}
-
-/* Центральная рамка портрета преподавателя */
-.main-portrait-frame {
-    width: 260px;
-    height: 340px;
-    margin: 0 auto 40px auto;
-    border: 3px solid #b59352;
-    box-shadow: 0 0 30px rgba(0,0,0,0.8), 0 0 15px rgba(181, 147, 82, 0.2);
-    background-color: #111519;
-    padding: 5px;
-    transform: rotate(-1deg);
-}
-
-.main-portrait {
+/* Дымный градиент для идеальной читаемости интерфейса поверх фото */
+.smoke-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background: linear-gradient(180deg, rgba(12, 15, 18, 0.2) 0%, rgba(12, 15, 18, 0.5) 50%, rgba(12, 15, 18, 1) 100%);
+    z-index: 1;
+}
+
+.hero-center {
+    position: relative;
+    z-index: 2;
+    width: 100%;
 }
 
 .choice-title {
     font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     color: #ffffff;
     margin-bottom: 40px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.95);
 }
 
-/* Сетка карточек выбора */
+/* Сетка карточек выбора роли */
 .decision-grid {
     display: flex;
     justify-content: center;
     gap: 40px;
     max-width: 900px;
-    margin: 0 auto 50px auto;
+    margin: 0 auto 40px auto;
 }
 
 .decision-card {
     flex: 1;
-    background: #161c23;
+    background: rgba(22, 28, 35, 0.9); /* Полупрозрачный темный фон */
     border: 1px solid #2c353f;
     padding: 35px 25px;
     border-radius: 4px;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px); /* Легкий размыв фона */
 }
 
 .decision-card h3 {
@@ -187,6 +173,7 @@ nav a:hover {
     color: #8da1b5;
     margin-bottom: 25px;
     min-height: 45px;
+    line-height: 1.5;
 }
 
 .card-icon {
@@ -194,23 +181,23 @@ nav a:hover {
     margin-bottom: 15px;
 }
 
-/* Индивидуальная карточка ховер (Синий Аркан стиль) */
+/* Подсветка индивидуального пути (Синий цвет) */
 .solo-zone .card-icon { color: #4ba3ff; }
 .solo-zone:hover {
     border-color: #4ba3ff;
-    box-shadow: 0 0 20px rgba(75, 163, 255, 0.2);
+    box-shadow: 0 0 20px rgba(75, 163, 255, 0.3);
     transform: translateY(-5px);
 }
 
-/* Групповая карточка ховер (Красный боевой стиль) */
+/* Подсветка командного пути (Красный цвет) */
 .team-zone .card-icon { color: #ff4b4b; }
 .team-zone:hover {
     border-color: #ff4b4b;
-    box-shadow: 0 0 20px rgba(255, 75, 75, 0.2);
+    box-shadow: 0 0 20px rgba(255, 75, 75, 0.3);
     transform: translateY(-5px);
 }
 
-/* Игровые кнопки карточек */
+/* Игровые кнопки */
 .btn-choice {
     display: block;
     text-decoration: none;
@@ -231,10 +218,6 @@ nav a:hover {
 .team-btn:hover { background: #ef4444; }
 
 /* Кнопка "Бесплатный пробный урок" */
-.lobby-actions {
-    margin-top: 30px;
-}
-
 .btn-lobby-trial {
     display: inline-block;
     text-decoration: none;
@@ -242,11 +225,11 @@ nav a:hover {
     background: linear-gradient(180deg, #e5c173 0%, #b59352 100%);
     color: #111519 !important;
     font-weight: 900;
-    padding: 16px 40px;
+    padding: 16px 45px;
     font-size: 1.1rem;
     letter-spacing: 1px;
     border-radius: 2px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     transition: transform 0.2s;
 }
 
@@ -258,7 +241,7 @@ nav a:hover {
 /* Секция "Артефакты" (About) */
 .about-dota {
     background-color: #080b0e;
-    padding: 80px 0;
+    padding: 100px 0 80px 0;
     border-bottom: 2px solid #111519;
 }
 
@@ -274,6 +257,7 @@ nav a:hover {
     padding: 30px;
     border-radius: 4px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .artifact-img {
@@ -292,9 +276,10 @@ nav a:hover {
 .artifact-card p {
     font-size: 0.95rem;
     color: #7a8b9e;
+    line-height: 1.6;
 }
 
-/* Секция Магазина (Цены) */
+/* Внутриигровой Магазин (Цены) */
 .shop-dota {
     background: #0c0f12;
     padding: 80px 0;
@@ -316,9 +301,9 @@ nav a:hover {
     padding: 40px 30px;
     border-radius: 4px;
     position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
-/* Особый фокус на групповые занятия */
 .featured-item {
     border: 2px solid #e5c173;
     box-shadow: 0 0 25px rgba(229, 193, 115, 0.1);
@@ -374,17 +359,10 @@ nav a:hover {
     transition: all 0.3s;
 }
 
-.btn-buy:hover {
-    background-color: #2563eb;
-    border-color: #60a5fa;
-}
+.btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
+.team-buy:hover { background-color: #dc2626; border-color: #f87171; }
 
-.team-buy:hover {
-    background-color: #dc2626;
-    border-color: #f87171;
-}
-
-/* Секция Героев (Отзывы) */
+/* Таверна Героев (Отзывы) */
 .reviews-dota {
     background-color: #080b0e;
     padding: 80px 0;
@@ -396,11 +374,12 @@ nav a:hover {
     gap: 30px;
 }
 
-/* Стилизация под аркану для англоязычного отзыва */
+/* Стилизация под мистическую аркану для английского отзыва */
 .arcana-review {
     grid-column: span 2;
     border: 1px solid #a855f7 !important;
     background: linear-gradient(135deg, #111519 0%, #1e112c 100%) !important;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
 }
 
 .hero-review-card {
@@ -429,7 +408,7 @@ nav a:hover {
     box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* Игровые цвета для персонажей */
+/* Фирменные цвета бэкграундов для персонажей */
 .design-mirana { background-color: #1e3a8a; border: 1px solid #3b82f6; }
 .design-rubick { background-color: #065f46; border: 1px solid #10b981; }
 .design-snapfire { background-color: #9a3412; border: 1px solid #f97316; }
@@ -454,7 +433,7 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* Секция Гильдии (Контакты и Канал) */
+/* Лобби Гильдии (Канал и Контакты) */
 .guild-dota {
     background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
     padding: 80px 0;
@@ -533,7 +512,7 @@ nav a:hover {
     color: #e5c173;
 }
 
-/* Игровой Футер */
+/* Игровой лаконичный футер */
 footer {
     background-color: #06080a;
     border-top: 1px solid #111519;
@@ -541,4 +520,17 @@ footer {
     font-size: 0.8rem;
     color: #475569;
     letter-spacing: 1px;
+}
+
+/* Адаптивность под мобильные телефоны */
+@media (max-width: 768px) {
+    .decision-grid, .features-dota, .shop-grid, .heroes-grid, .contact-row-dota {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+    .arcana-review { grid-column: auto; }
+    .hero-dota { height: auto; padding: 120px 0 60px 0; }
+    .choice-title { font-size: 1.6rem; }
+    .header-flex { flex-direction: column; gap: 10px; text-align: center; }
+    nav a { margin: 0 10px; font-size: 0.8rem; }
 }
