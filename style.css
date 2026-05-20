@@ -97,33 +97,31 @@ nav a:hover {
     text-shadow: 1px 1px 2px black;
 }
 
-/* === ОБНОВЛЕНО: Новый центрированный Hero блок === */
+/* Центрированный Hero блок */
 .hero-dota {
-    background-color: #0c0f12; /* Темный фон вместо картинки */
-    padding: 100px 0 80px 0; /* Больше отступа сверху под фиксированную шапку */
+    background-color: #0c0f12; 
+    padding: 100px 0 80px 0; 
     border-bottom: 3px solid #1c242d;
 }
 
 /* Стилизация центрального визуального блока как "Святилища" */
 .hero-visual-block {
     position: relative;
-    max-width: 900px; /* Фиксированная ширина на больших экранах */
-    margin: 0 auto 50px auto; /* Центрируем и даем отступ вниз */
-    border: 3px solid #b59352; /* Древняя золотая рамка */
+    max-width: 900px; 
+    margin: 0 auto 50px auto; 
+    border: 3px solid #b59352; 
     box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(181, 147, 82, 0.2);
     background-color: #111519;
-    padding: 5px; /* Отступ рамки от картинки */
-    transform: rotate(-0.5deg); /* Легкий наклон для фэнтези вайба */
+    padding: 5px; 
+    transform: rotate(-0.5deg); 
 }
 
-/* Гарантирует максимальную чёткость и сохранение пропорций */
 .hero-shrine-img {
     width: 100%;
     height: auto;
-    object-fit: contain; /* Картинка влезает целиком и не растягивается */
+    object-fit: contain; 
 }
 
-/* Контент выбора роли ниже визуала */
 .hero-choice-content {
     max-width: 900px;
     margin: 0 auto;
@@ -176,7 +174,6 @@ nav a:hover {
     margin-bottom: 15px;
 }
 
-/* Подсветка Solo Zone (Синий) */
 .solo-zone .card-icon { color: #4ba3ff; }
 .solo-zone:hover {
     border-color: #4ba3ff;
@@ -184,7 +181,6 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
-/* Подсветка Team Zone (Красный) */
 .team-zone .card-icon { color: #ff4b4b; }
 .team-zone:hover {
     border-color: #ff4b4b;
@@ -192,7 +188,6 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
-/* Игровые кнопки карточек */
 .btn-choice {
     display: block;
     text-decoration: none;
@@ -212,7 +207,6 @@ nav a:hover {
 .team-btn { background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%); border-bottom: 3px solid #7f1d1d; }
 .team-btn:hover { background: #ef4444; }
 
-/* Кнопка "Бесплатный пробный урок" */
 .btn-lobby-trial {
     display: inline-block;
     text-decoration: none;
@@ -328,14 +322,6 @@ nav a:hover {
 .gold-price span {
     font-size: 1rem;
     color: #627384;
-    font-family: 'Inter', sans-serif;
-}
-
-.item-desc {
-    font-size: 0.95rem;
-    color: #8da1b5;
-    margin-bottom: 35px;
-    line-height: 1.6;
 }
 
 .btn-buy {
@@ -349,7 +335,6 @@ nav a:hover {
     border-radius: 2px;
     border: 1px solid #4f5d6e;
     font-size: 0.9rem;
-    transition: all 0.3s;
 }
 
 .btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
@@ -398,7 +383,6 @@ nav a:hover {
     color: white;
 }
 
-/* Игровые цвета для персонажей */
 .design-mirana { background-color: #1e3a8a; border: 1px solid #3b82f6; }
 .design-rubick { background-color: #065f46; border: 1px solid #10b981; }
 .design-snapfire { background-color: #9a3412; border: 1px solid #f97316; }
@@ -423,7 +407,7 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* Лобби Гильдии (Канал и Контакты) */
+/* === ПОЧИНЕНО: Лобби Гильдии (Канал и Контакты) === */
 .guild-dota {
     background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
     padding: 80px 0;
@@ -439,20 +423,24 @@ nav a:hover {
     border-radius: 4px;
 }
 
-.btn-guild-tg {
-    display: inline-block;
-    text-decoration: none;
-    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
-    color: white;
-    font-weight: bold;
-    padding: 14px 35px;
-    border-radius: 2px;
-    border-bottom: 3px solid #075985;
-    font-size: 0.95rem;
-    text-shadow: 1px 1px 2px black;
+/* Стили для текста над кнопками */
+.contacts-pitch {
+    margin-bottom: 25px !important;
+    color: #cbd5e1;
+    font-size: 1.05rem;
+}
+
+/* Флекс-контейнер для кнопок, чтобы они стояли ровно и не наезжали */
+.contact-row-dota {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
 }
 
 .btn-contact-link {
+    display: inline-block;
     text-decoration: none;
     background-color: #111519;
     border: 1px solid #2c353f;
@@ -461,6 +449,17 @@ nav a:hover {
     font-weight: 600;
     font-size: 1rem;
     border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.btn-contact-link:hover {
+    border-color: #e5c173;
+    color: #e5c173;
+}
+
+.phone-gold {
+    border-color: #b59352;
+    color: #e5c173;
 }
 
 /* Игровой Футер */
@@ -472,11 +471,11 @@ footer {
     color: #475569;
 }
 
-/* === ОБНОВЛЕНО: Мобильная адаптивность для центрированного блока === */
+/* Мобильная адаптивность */
 @media (max-width: 992px) {
     .hero-visual-block {
-        max-width: 70%; /* На планшетах делаем блок чуть уже */
-        transform: none; /* Убираем наклон */
+        max-width: 70%;
+        transform: none;
     }
 }
 
@@ -486,7 +485,7 @@ footer {
         grid-template-columns: 1fr;
     }
     .hero-visual-block {
-        max-width: 100%; /* На телефонах на всю ширину */
+        max-width: 100%;
         margin-bottom: 30px;
     }
     .arcana-review { grid-column: auto; }
