@@ -1,4 +1,4 @@
-/* Дизайн-система Sanctum // Dota 2 Arcana Style */
+/* Базовые глобальные сбросы и настройки темы */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #0c0f12; /* Глубокий тёмно-серый цвет лобби */
+    background-color: #0c0f12; /* Фирменный глубокий темно-серый цвет Доты */
     color: #b3b9c1;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -23,7 +23,7 @@ body {
 .text-center { text-align: center; }
 .gold-accent { color: #e5c173; }
 
-/* Общий стиль для игровых фэнтези-заголовков (как Trajan) */
+/* Общий стиль для игровых фэнтези-заголовков (Trajan style) */
 .section-title {
     font-family: 'Cinzel', serif;
     font-size: 2.2rem;
@@ -44,7 +44,7 @@ body {
     margin: 15px auto 0 auto;
 }
 
-/* Навигация // Accept Match стиль */
+/* Навигация (фиксированная) */
 header {
     background-color: rgba(17, 21, 25, 0.95);
     border-bottom: 2px solid #2c353f;
@@ -52,7 +52,7 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 100;
 }
 
 .header-flex {
@@ -97,44 +97,36 @@ nav a:hover {
     text-shadow: 1px 1px 2px black;
 }
 
-/* === ОБНОВЛЕНО: Четкий, Полноэкранный Фон Арканы === */
+/* === ОБНОВЛЕНО: Новый центрированный Hero блок === */
 .hero-dota {
-    position: relative;
-    /* Картинка на весь экран, четкая, по верхнему краю */
-    background: url('dota_hero.jpg') no-repeat top center fixed;
-    background-size: cover;
-    
-    /* Растягиваем на всю высоту окна браузера */
-    height: calc(100vh - 70px);
-    
-    /* === КЛЮЧЕВОЕ ИЗМЕНЕНИЕ UX === */
-    /* Выравниваем контент строго по нижнему краю, у ног персонажа */
-    display: flex;
-    align-items: flex-end; /* Опускаем всё вниз */
-    justify-content: center;
-    text-align: center;
-    
+    background-color: #0c0f12; /* Темный фон вместо картинки */
+    padding: 100px 0 80px 0; /* Больше отступа сверху под фиксированную шапку */
     border-bottom: 3px solid #1c242d;
-    padding-bottom: 50px; /* Отступ от самого низа экрана */
 }
 
-/* Мягкое затемнение фона, чтобы UI читался идеально */
-.smoke-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Градиент: сверху прозрачно, снизу густой темный туман Доты, чтобы скрыть лишнее */
-    background: linear-gradient(180deg, rgba(12, 15, 18, 0) 0%, rgba(12, 15, 18, 0.4) 50%, rgba(12, 15, 18, 1) 100%);
-    z-index: 1;
-}
-
-/* Убеждаемся, что контент лежит поверх фона */
-.hero-center {
+/* Стилизация центрального визуального блока как "Святилища" */
+.hero-visual-block {
     position: relative;
-    z-index: 2;
+    max-width: 900px; /* Фиксированная ширина на больших экранах */
+    margin: 0 auto 50px auto; /* Центрируем и даем отступ вниз */
+    border: 3px solid #b59352; /* Древняя золотая рамка */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(181, 147, 82, 0.2);
+    background-color: #111519;
+    padding: 5px; /* Отступ рамки от картинки */
+    transform: rotate(-0.5deg); /* Легкий наклон для фэнтези вайба */
+}
+
+/* Гарантирует максимальную чёткость и сохранение пропорций */
+.hero-shrine-img {
     width: 100%;
+    height: auto;
+    object-fit: contain; /* Картинка влезает целиком и не растягивается */
+}
+
+/* Контент выбора роли ниже визуала */
+.hero-choice-content {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .choice-title {
@@ -143,12 +135,9 @@ nav a:hover {
     color: #ffffff;
     margin-bottom: 40px;
     letter-spacing: 3px;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.95);
-    z-index: 10;
 }
 
-/* === ОБНОВЛЕНО: Сетка карточек выбора роли === */
-/* Карточки теперь аккуратнее и ниже */
+/* Сетка карточек выбора роли */
 .decision-grid {
     display: flex;
     justify-content: center;
@@ -158,33 +147,33 @@ nav a:hover {
 }
 
 .decision-card {
-    flex: 0 0 350px; /* Сделали карточки меньше и фиксированной ширины */
-    background: rgba(22, 28, 35, 0.95); /* Более густой фон */
+    flex: 1;
+    background: #161c23;
     border: 1px solid #2c353f;
-    padding: 25px 20px; /* Уменьшили падинги внутри */
+    padding: 35px 25px;
     border-radius: 4px;
+    transition: all 0.3s ease;
     box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-    backdrop-filter: blur(8px); /* Сильнее размыв */
 }
 
 .decision-card h3 {
     font-family: 'Cinzel', serif;
-    font-size: 1.2rem; /* Сделали шрифт меньше */
-    margin-bottom: 12px;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
     color: white;
 }
 
 .decision-card p {
-    font-size: 0.9rem; /* Сделали шрифт меньше */
+    font-size: 0.95rem;
     color: #8da1b5;
-    margin-bottom: 20px;
-    min-height: auto; /* Убрали фиксированную высоту */
+    margin-bottom: 25px;
+    min-height: 45px;
     line-height: 1.5;
 }
 
 .card-icon {
-    font-size: 2.2rem; /* Сделали иконку меньше */
-    margin-bottom: 12px;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
 }
 
 /* Подсветка Solo Zone (Синий) */
@@ -209,17 +198,21 @@ nav a:hover {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    padding: 10px 0;
+    padding: 12px 0;
     border-radius: 2px;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     letter-spacing: 1px;
+    text-shadow: 1px 1px 2px black;
 }
 
 .solo-btn { background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%); border-bottom: 3px solid #1e40af; }
-.team-btn { background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%); border-bottom: 3px solid #7f1d1d; }
+.solo-btn:hover { background: #3b82f6; }
 
-/* Кнопка "Пробный урок" */
+.team-btn { background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%); border-bottom: 3px solid #7f1d1d; }
+.team-btn:hover { background: #ef4444; }
+
+/* Кнопка "Бесплатный пробный урок" */
 .btn-lobby-trial {
     display: inline-block;
     text-decoration: none;
@@ -227,17 +220,24 @@ nav a:hover {
     background: linear-gradient(180deg, #e5c173 0%, #b59352 100%);
     color: #111519 !important;
     font-weight: 900;
-    padding: 14px 40px;
-    font-size: 1rem;
+    padding: 16px 45px;
+    font-size: 1.1rem;
     letter-spacing: 1px;
     border-radius: 2px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+}
+
+.btn-lobby-trial:hover {
+    transform: scale(1.03);
+    background: linear-gradient(180deg, #f3d798 0%, #cfa85f 100%);
 }
 
 /* Секция "Артефакты" */
 .about-dota {
     background-color: #080b0e;
     padding: 80px 0;
+    border-bottom: 2px solid #111519;
 }
 
 .features-dota {
@@ -273,7 +273,7 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* Магазин товаров (Цены) */
+/* Магазин тарифов (Shop) */
 .shop-dota {
     background: #0c0f12;
     padding: 80px 0;
@@ -328,6 +328,14 @@ nav a:hover {
 .gold-price span {
     font-size: 1rem;
     color: #627384;
+    font-family: 'Inter', sans-serif;
+}
+
+.item-desc {
+    font-size: 0.95rem;
+    color: #8da1b5;
+    margin-bottom: 35px;
+    line-height: 1.6;
 }
 
 .btn-buy {
@@ -341,6 +349,7 @@ nav a:hover {
     border-radius: 2px;
     border: 1px solid #4f5d6e;
     font-size: 0.9rem;
+    transition: all 0.3s;
 }
 
 .btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
@@ -414,7 +423,7 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* Лобби Гильдии (Контакты и Канал) */
+/* Лобби Гильдии (Канал и Контакты) */
 .guild-dota {
     background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
     padding: 80px 0;
@@ -461,4 +470,27 @@ footer {
     padding: 30px 0;
     font-size: 0.8rem;
     color: #475569;
+}
+
+/* === ОБНОВЛЕНО: Мобильная адаптивность для центрированного блока === */
+@media (max-width: 992px) {
+    .hero-visual-block {
+        max-width: 70%; /* На планшетах делаем блок чуть уже */
+        transform: none; /* Убираем наклон */
+    }
+}
+
+@media (max-width: 768px) {
+    .decision-grid, .features-dota, .shop-grid, .heroes-grid, .contact-row-dota {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+    .hero-visual-block {
+        max-width: 100%; /* На телефонах на всю ширину */
+        margin-bottom: 30px;
+    }
+    .arcana-review { grid-column: auto; }
+    .choice-title { font-size: 1.6rem; }
+    .header-flex { flex-direction: column; gap: 10px; text-align: center; }
+    nav a { margin: 0 10px; font-size: 0.8rem; }
 }
