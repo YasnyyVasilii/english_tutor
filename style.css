@@ -141,7 +141,7 @@ header {
 .header-nav a:hover { color: #e5c173; }
 
 /* ==========================================================================
-   3. ИГРОВОЙ ХОЛСТ И АНИМАЦИИ СВЕЧЕНИЯ
+   3. ИГРОВОЙ ХОЛСТ И АНИМАЦИИ ЭНЕРГЕТИЧЕСКОГО ТРАНЗИТА
    ========================================================================== */
 .hero-dota {
     background-color: #0c0f12;
@@ -167,36 +167,50 @@ header {
     object-fit: cover;
 }
 
-/* Безопасный многослойный туман (Не искажает цвета основной картинки) */
+/* ЦЕНТРАЛЬНЫЙ РИФТ: Зона слияния энергии за Артёмом (Фиолетово-золотой стык) */
+.central-energy-rift {
+    position: absolute;
+    top: 20%;
+    left: 44%;
+    width: 12%;
+    height: 55%;
+    background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.4) 0%, rgba(229, 193, 115, 0.15) 50%, transparent 80%);
+    mix-blend-mode: color-dodge;
+    filter: blur(6px);
+    z-index: 1;
+    animation: riftFlicker 3s ease-in-out infinite alternate;
+}
+
 .ambient-smoke {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%; /* Запас для бесконечной прокрутки */
+    width: 100%;
     height: 100%;
     pointer-events: none;
     z-index: 2;
 }
 
+/* СИНЯЯ ЭНЕРГИЯ: Импульсами рождается в центре и мощно уходит ВЛЕВО к героям */
 .smoke-layer-1 {
-    /* Мягкий синий туман слева + процедурная текстура дыма */
-    background: radial-gradient(circle at 15% 75%, rgba(59, 130, 246, 0.25) 0%, transparent 45%),
-                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
-    animation: driftSmokeLeft 30s linear infinite;
-    opacity: 0.4;
-    mix-blend-mode: screen; /* Чистое осветление без ядовитого выгорания */
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.65) 0%, rgba(59, 130, 246, 0.15) 40%, transparent 80%);
+    background-size: 200% 100%;
+    animation: surgeEnergyLeft 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    mix-blend-mode: color-dodge;
+    filter: blur(4px);
 }
 
+/* КРАСНАЯ ЭНЕРГИЯ: Импульсами рождается в центре и мощно уходит ВПРАВО к героям */
 .smoke-layer-2 {
-    /* Мягкий красный туман справа + процедурная текстура дыма */
-    background: radial-gradient(circle at 85% 75%, rgba(239, 68, 68, 0.25) 0%, transparent 45%),
-                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAyIiBudW1PY3RhdmVzPSIyIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==');
-    animation: driftSmokeRight 22s linear infinite;
-    opacity: 0.35;
-    mix-blend-mode: screen;
+    background: linear-gradient(270deg, rgba(220, 38, 38, 0.65) 0%, rgba(239, 68, 68, 0.15) 40%, transparent 80%);
+    background-size: 200% 100%;
+    background-position: right;
+    animation: surgeEnergyRight 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    mix-blend-mode: color-dodge;
+    filter: blur(4px);
 }
 
-/* Золотистая пульсация родной арки */
+/* Золотистая пульсация букв оригинальной арки */
 .arch-glow-pulse {
     position: absolute;
     top: 4%;
@@ -206,23 +220,51 @@ header {
     pointer-events: none;
     z-index: 3;
     background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.25) 0%, transparent 75%);
-    mix-blend-mode: screen;
+    mix-blend-mode: color-dodge;
     animation: archPulseEffect 3s ease-in-out infinite;
 }
 
+/* --- ТРАЕКТОРИИ И ДИНАМИКА ДВИЖЕНИЯ ПОТОКОВ (ИЗ ПРОМПТА) --- */
+
+/* Мерцание центрального разлома сил */
+@keyframes riftFlicker {
+    0% { opacity: 0.4; transform: scale(0.97) rotate(-0.5deg); }
+    100% { opacity: 1; transform: scale(1.03) rotate(0.5deg); }
+}
+
+/* Плазменный транзит влево */
+@keyframes surgeEnergyLeft {
+    0% { 
+        background-position: 150% 0; 
+        opacity: 0.2; 
+    }
+    30%, 70% { 
+        opacity: 0.9; 
+    }
+    100% { 
+        background-position: -50% 0; 
+        opacity: 0.1; 
+    }
+}
+
+/* Плазменный транзит вправо */
+@keyframes surgeEnergyRight {
+    0% { 
+        background-position: -150% 0; 
+        opacity: 0.2; 
+    }
+    30%, 70% { 
+        opacity: 0.9; 
+    }
+    100% { 
+        background-position: 50% 0; 
+        opacity: 0.1; 
+    }
+}
+
 @keyframes archPulseEffect {
-    0%, 100% { opacity: 0.3; transform: scale(0.995); }
-    50% { opacity: 0.9; transform: scale(1.005); }
-}
-
-@keyframes driftSmokeLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-@keyframes driftSmokeRight {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+    0%, 100% { opacity: 0.4; transform: scale(0.995); }
+    50% { opacity: 1; transform: scale(1.005); }
 }
 
 /* ==========================================================================
