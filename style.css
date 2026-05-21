@@ -123,9 +123,7 @@ header {
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.7);
 }
 
-.btn-match-accept:active {
-    transform: scale(0.96); /* Кликабельность */
-}
+.btn-match-accept:active { transform: scale(0.96); }
 
 .header-nav a {
     text-decoration: none;
@@ -138,7 +136,7 @@ header {
 
 .header-nav a:hover { color: #e5c173; }
 
-/* === ИНТЕРАКТИВНЫЙ ИГРОВОЙ ХОЛСТ С АНИМАЦИЯМИ === */
+/* === ИГРОВОЙ ХОЛСТ === */
 .hero-dota {
     background-color: #0c0f12;
     padding: 20px 0 40px 0;
@@ -163,143 +161,134 @@ header {
     object-fit: cover;
 }
 
-/* === АНИМАЦИЯ 1: Движущаяся фоновая дымка (Многослойная) === */
+/* === АНИМАЦИЯ ДЫМА И СВЕЧЕНИЯ НАД РОДНОЙ АРКОЙ КАРТИНКИ === */
 .ambient-smoke {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%; /* Шире контейнера для бесконечного сдвига */
+    width: 200%; 
     height: 100%;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.25;
+    opacity: 0.28;
 }
 
 .smoke-layer-1 {
     background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
-    animation: driftSmokeLeft 35s linear infinite;
+    animation: driftSmokeLeft 32s linear infinite;
 }
 
 .smoke-layer-2 {
     background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAyIiBudW1PY3RhdmVzPSIyIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==');
-    animation: driftSmokeRight 25s linear infinite;
-    opacity: 0.15;
+    animation: driftSmokeRight 22s linear infinite;
+    opacity: 0.18;
+}
+
+/* Мягкая золотистая пульсация поверх оригинального текста на картинке */
+.arch-glow-pulse {
+    position: absolute;
+    top: 5%;
+    left: 17%;
+    width: 66%;
+    height: 16%;
+    pointer-events: none;
+    z-index: 3;
+    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.18) 0%, transparent 75%);
+    mix-blend-mode: color-dodge;
+    animation: archPulse Effect 4s ease-in-out infinite;
+}
+
+@keyframes archPulseEffect {
+    0%, 100% { opacity: 0.5; filter: blur(2px); }
+    50% { opacity: 1; filter: blur(0px); }
 }
 
 @keyframes driftSmokeLeft {
     0% { transform: translateX(0) scaleY(1); }
-    50% { transform: translateX(-25%) scaleY(1.1); }
+    50% { transform: translateX(-25%) scaleY(1.08); }
     100% { transform: translateX(-50%) scaleY(1); }
 }
 
 @keyframes driftSmokeRight {
-    0% { transform: translateX(-50%) cubic-bezier(0.4, 0, 0.2, 1); }
+    0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
 }
 
-/* === АНИМАЦИЯ 2: Улучшенный, неоновый PRACTICE MAKES PERFECT === */
-.arcana-text-overlay {
-    position: absolute;
-    top: 8.5%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Cinzel', serif;
-    font-size: 3.55vw; 
-    font-weight: 900;
-    color: #f1f5f9;
-    letter-spacing: 4px;
-    z-index: 6;
-    pointer-events: none;
-    text-align: center;
-    width: 100%;
-    /* Эпическое многослойное золотое свечение */
-    animation: goldArcanaGlow 4s ease-in-out infinite;
-}
-
-@keyframes goldArcanaGlow {
-    0%, 100% {
-        text-shadow: 0 0 12px rgba(229, 193, 115, 0.5), 0 0 25px rgba(229, 193, 115, 0.2);
-        color: #f8fafc;
-    }
-    50% {
-        text-shadow: 0 0 25px rgba(245, 158, 11, 0.9), 0 0 45px rgba(245, 158, 11, 0.4), 0 0 4px rgba(255,255,255,0.9);
-        color: #ffffff;
-    }
-}
-
-/* === УЛУЧШЕНО: Кнопки-оверлеи (Идеальный размер, перекрытие арта) === */
+/* === ИСПРАВЛЕНО: Кнопки-оверлеи (Увеличенный размер, 100% перекрытие фона) === */
 .interactive-overlay-btn {
     position: absolute;
-    bottom: 15.2%; 
-    height: 14.8%; 
-    width: 23%;  /* Одинаковый, фиксированный размер для обеих кнопок */
+    bottom: 14.5%; /* Сдвинули чуть ниже для идеального перекрытия */
+    height: 16.2%; /* Увеличили высоту плашки */
+    width: 25.2%;  /* Увеличили ширину плашки, чтобы скрыть старые рамки */
     text-decoration: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 4px;
     z-index: 10;
-    /* Плотный непрозрачный фон полностью блокирует текст на картинке под ними */
-    background: #0d1117; 
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8);
+    /* Абсолютно непрозрачный глубокий фон стирает рисунок под кнопками */
+    background: #090d12; 
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 12px 24px rgba(0,0,0,0.85);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Solo Dungeon стили */
+/* Solo Dungeon левая позиция */
 .solo-dungeon-trigger {
-    left: 26.5%;
-    border: 1px solid #1e3a8a;
-    background: linear-gradient(180deg, #0f172a 0%, #090d16 100%);
+    left: 25.4%; /* Сместили левее, перекрывая старый контур */
+    border: 1px solid #1d3557;
+    background: linear-gradient(180deg, #0f172a 0%, #070b11 100%);
 }
 .solo-dungeon-trigger:hover {
     border-color: #3b82f6;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+    transform: translateY(-3px);
 }
 .solo-dungeon-trigger:active {
-    transform: translateY(1px) scale(0.97); /* Физический отклик нажатия */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.9);
+    transform: translateY(1px) scale(0.96);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.9);
 }
 
-/* TEAM FIGHT стили */
+/* TEAM FIGHT правая позиция */
 .team-fight-trigger {
-    right: 26.5%;
-    border: 1px solid #5c1d1d;
-    background: linear-gradient(180deg, #2d1515 0%, #170b0b 100%);
+    right: 25.4%; /* Сместили правее, перекрывая старый контур */
+    border: 1px solid #4a1515;
+    background: linear-gradient(180deg, #2a1212 0%, #110606 100%);
 }
 .team-fight-trigger:hover {
     border-color: #ef4444;
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+    transform: translateY(-3px);
 }
 .team-fight-trigger:active {
-    transform: translateY(1px) scale(0.97); /* Физический отклик нажатия */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.9);
+    transform: translateY(1px) scale(0.96);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.9);
 }
 
-/* Отрегулированные размеры текстов внутри кнопок */
+/* Тексты внутри кнопок */
 .overlay-main-title {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 1.15vw; 
+    font-size: 1.25vw; 
     color: #ffffff;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 .solo-dungeon-trigger .overlay-main-title { color: #60a5fa; }
 .team-fight-trigger .overlay-main-title { color: #f87171; }
 
 .overlay-sub-title {
-    font-size: 0.75vw;
+    font-size: 0.8vw;
     font-weight: 600;
     color: #cbd5e1;
     text-transform: lowercase;
     text-align: center;
+    line-height: 1.3;
 }
 
-/* === УЛУЧШЕНО: Интерактивная кнопка Пробного Урока === */
+/* Интерактивная кнопка Пробного Урока */
 .interactive-trial-overlay-btn {
     position: absolute;
     bottom: 5.2%;
@@ -329,7 +318,7 @@ header {
 }
 
 .interactive-trial-overlay-btn:active {
-    transform: translateX(-50%) scale(0.96); /* Кликабельность */
+    transform: translateX(-50%) scale(0.96); 
 }
 
 /* Секция "Артефакты" */
