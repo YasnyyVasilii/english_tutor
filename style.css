@@ -141,7 +141,7 @@ header {
 .header-nav a:hover { color: #e5c173; }
 
 /* ==========================================================================
-   3. ИГРОВОЙ ХОЛСТ И АНИМАЦИИ ЭНЕРГЕТИЧЕСКОГО ТРАНЗИТА
+   3. ИГРОВОЙ ХОЛСТ И АНИМАЦИИ СЛАБОГО ПЕРЕЛИВАНИЯ (СИЯНИЕ ЖИВОЙ ПЛАЗМЫ)
    ========================================================================== */
 .hero-dota {
     background-color: #0c0f12;
@@ -167,48 +167,54 @@ header {
     object-fit: cover;
 }
 
-/* ЦЕНТРАЛЬНЫЙ РИФТ: Точка зарождения магии (за спиной Артема) */
+/* === УНИКАЛЬНОЕ ЦЕНТРАЛЬНОЕ ПЕРЕТЕКАНИЕ ЭНЕРГИИ ЗА АРТЕМОМ === */
+/* Мы используем центральный рифт из HTML для создания точки слияния сил */
 .central-energy-rift {
     position: absolute;
-    top: 20%;
-    left: 44%;
-    width: 12%;
-    height: 55%;
-    background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.4) 0%, rgba(229, 193, 115, 0.2) 50%, transparent 80%);
+    top: 22%;
+    left: 45%;
+    width: 10%;
+    height: 50%;
+    background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.4) 0%, rgba(229, 193, 115, 0.15) 50%, transparent 80%);
     mix-blend-mode: color-dodge;
     filter: blur(6px);
     z-index: 1;
-    animation: riftFlicker 2s ease-in-out infinite alternate;
+    animation: riftFlicker 3s ease-in-out infinite alternate;
 }
 
-/* Ограничиваем слои строго по половинам экрана, чтобы импульсы шли из центра */
 .ambient-smoke {
     position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    width: 50%; /* Ровно половина холста */
     pointer-events: none;
     z-index: 2;
-    filter: blur(8px); /* Превращает линии в мягкое плазменное свечение */
 }
 
-/* СИНЯЯ ЭНЕРГИЯ: Садится на левую половину экрана */
+/* СИНЯЯ ЭНЕРГИЯ: Стационарная, мягко переливающаяся под левыми героями */
 .smoke-layer-1 {
-    left: 0;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5) 70%, rgba(147, 197, 253, 0.8) 90%, transparent 100%);
+    /* Точно позиционированные радиальные градиенты на синюю энергию арта */
+    background: radial-gradient(circle at 18% 70%, rgba(37, 99, 235, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 25% 60%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
     mix-blend-mode: color-dodge;
-    animation: surgeEnergyLeft 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    filter: blur(3px); /* Смягчает границы градиента до состояния плазмы */
+    /* Запускаем слабую анимацию мерцания и микро-сдвига цвета (hue-rotate) */
+    animation: pearlescentGlow 8s ease-in-out infinite alternate;
 }
 
-/* КРАСНАЯ ЭНЕРГИЯ: Садится на правую половину экрана */
+/* КРАСНАЯ ЭНЕРГИЯ: Стационарная, мягко переливающаяся под правыми героями */
 .smoke-layer-2 {
-    right: 0;
-    background: linear-gradient(270deg, transparent, rgba(239, 68, 68, 0.5) 70%, rgba(254, 202, 202, 0.8) 90%, transparent 100%);
+    /* Точно позиционированные градиенты на красную энергию арта */
+    background: radial-gradient(circle at 82% 70%, rgba(220, 38, 38, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 75% 65%, rgba(239, 68, 68, 0.15) 0%, transparent 40%);
     mix-blend-mode: color-dodge;
-    animation: surgeEnergyRight 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    filter: blur(3px);
+    /* Чуть другая скорость и задержка для органичного вида */
+    animation: pearlescentGlow 9s ease-in-out infinite alternate 1s;
 }
 
-/* Золотистая пульсация букв оригинальной арки */
+/* Мягкая пульсация оригинальных букв арки */
 .arch-glow-pulse {
     position: absolute;
     top: 4%;
@@ -217,9 +223,38 @@ header {
     height: 18%;
     pointer-events: none;
     z-index: 3;
-    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.25) 0%, transparent 75%);
+    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.2) 0%, transparent 75%);
     mix-blend-mode: color-dodge;
     animation: archPulseEffect 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   КЛЮЧЕВЫЕ КАДРЫ СЛАБОГО ПЕРЕЛИВАНИЯ И МЕРЦАНИЯ (ПОЛНОСТЬЮ ОБНОВЛЕНО)
+   ========================================================================== */
+
+/* Мерцание центра */
+@keyframes riftFlicker {
+    0% { opacity: 0.4; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1.02); }
+}
+
+/* === ЭФФЕКТ СЛАБОГО СИЯНИЯ (Сдвиг цвета и прозрачности) === */
+@keyframes pearlescentGlow {
+    0% { 
+        opacity: 0.5; /* Слабая базовая прозрачность */
+        filter: blur(3px) hue-rotate(-3deg) saturate(1); /* Микро-сдвиг цвета */
+        transform: scale(0.98);
+    }
+    100% { 
+        opacity: 0.8; /* Чуть ярче в пике */
+        filter: blur(2px) hue-rotate(3deg) saturate(1.2); /* Смена оттенка на 6 градусов */
+        transform: scale(1.02);
+    }
+}
+
+@keyframes archPulseEffect {
+    0%, 100% { opacity: 0.4; transform: scale(0.995); }
+    50% { opacity: 0.9; transform: scale(1.005); }
 }
 
 /* ==========================================================================
