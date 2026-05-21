@@ -170,12 +170,12 @@ header {
     height: 100%;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.35; /* Сделали туман чуть ярче, чтобы движение было заметно */
+    opacity: 0.35;
 }
 
 .smoke-layer-1 {
     background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
-    animation: driftSmokeLeft 25s linear infinite; /* Ускорили движение */
+    animation: driftSmokeLeft 25s linear infinite;
 }
 
 .smoke-layer-2 {
@@ -183,7 +183,7 @@ header {
     animation: driftSmokeRight 18s linear infinite;
 }
 
-/* Золотистая пульсация букв арки */
+/* Золотистая пульсация букв арки (БЕЗ ГЕНЕРАЦИИ ТЕКСТА) */
 .arch-glow-pulse {
     position: absolute;
     top: 4%;
@@ -212,12 +212,12 @@ header {
     100% { transform: translateX(0); }
 }
 
-/* === КНОПКИ-ОВЕРЛЕИ (Размер скорректирован для плотного перекрытия) === */
+/* === КНОПКИ-ОВЕРЛЕИ (Плотный фон для маскировки рисунка сзади) === */
 .interactive-overlay-btn {
     position: absolute;
-    bottom: 14.5%; 
-    height: 16.2%; 
-    width: 25.8%;  /* Слегка расширили плашку */
+    bottom: 14.2%; 
+    height: 16.5%; 
+    width: 25.8%;  
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -226,7 +226,7 @@ header {
     padding: 6px 12px;
     border-radius: 4px;
     z-index: 10;
-    background: #090d12 !important; /* Чистый плотный цвет на 100% перекроет задний фон */
+    background: #090d12 !important; /* Этот цвет на 100% сотрет старый текст под кнопками */
     box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 12px 24px rgba(0,0,0,0.85);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
