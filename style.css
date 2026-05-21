@@ -170,43 +170,41 @@ header {
     height: 100%;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.28;
+    opacity: 0.35; /* Сделали туман чуть ярче, чтобы движение было заметно */
 }
 
 .smoke-layer-1 {
     background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
-    animation: driftSmokeLeft 32s linear infinite;
+    animation: driftSmokeLeft 25s linear infinite; /* Ускорили движение */
 }
 
 .smoke-layer-2 {
     background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAyIiBudW1PY3RhdmVzPSIyIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==');
-    animation: driftSmokeRight 22s linear infinite;
-    opacity: 0.18;
+    animation: driftSmokeRight 18s linear infinite;
 }
 
-/* Мягкая золотистая пульсация поверх оригинального текста на картинке */
+/* Золотистая пульсация букв арки (ПОЧИНЕНО) */
 .arch-glow-pulse {
     position: absolute;
-    top: 5%;
-    left: 17%;
-    width: 66%;
-    height: 16%;
+    top: 4%;
+    left: 15%;
+    width: 70%;
+    height: 18%;
     pointer-events: none;
     z-index: 3;
-    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.18) 0%, transparent 75%);
-    mix-blend-mode: color-dodge;
-    animation: archPulse Effect 4s ease-in-out infinite;
+    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.25) 0%, transparent 80%);
+    mix-blend-mode: screen;
+    animation: archPulseEffect 3s ease-in-out infinite; /* Убрали пробел в названии */
 }
 
 @keyframes archPulseEffect {
-    0%, 100% { opacity: 0.5; filter: blur(2px); }
-    50% { opacity: 1; filter: blur(0px); }
+    0%, 100% { opacity: 0.3; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1.02); }
 }
 
 @keyframes driftSmokeLeft {
-    0% { transform: translateX(0) scaleY(1); }
-    50% { transform: translateX(-25%) scaleY(1.08); }
-    100% { transform: translateX(-50%) scaleY(1); }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 @keyframes driftSmokeRight {
@@ -214,12 +212,12 @@ header {
     100% { transform: translateX(0); }
 }
 
-/* === ИСПРАВЛЕНО: Кнопки-оверлеи (Увеличенный размер, 100% перекрытие фона) === */
+/* === КНОПКИ-ОВЕРЛЕИ (Размер скорректирован для плотного перекрытия) === */
 .interactive-overlay-btn {
     position: absolute;
-    bottom: 14.5%; /* Сдвинули чуть ниже для идеального перекрытия */
-    height: 16.2%; /* Увеличили высоту плашки */
-    width: 25.2%;  /* Увеличили ширину плашки, чтобы скрыть старые рамки */
+    bottom: 14.2%; 
+    height: 16.5%; /* Слегка увеличили высоту */
+    width: 25.8%;  /* Слегка увеличили ширину для надежного перекрытия */
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -228,45 +226,39 @@ header {
     padding: 6px 12px;
     border-radius: 4px;
     z-index: 10;
-    /* Абсолютно непрозрачный глубокий фон стирает рисунок под кнопками */
     background: #090d12; 
     box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 12px 24px rgba(0,0,0,0.85);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Solo Dungeon левая позиция */
 .solo-dungeon-trigger {
-    left: 25.4%; /* Сместили левее, перекрывая старый контур */
+    left: 25.1%; /* Идеальная посадка поверх левой рамки */
     border: 1px solid #1d3557;
     background: linear-gradient(180deg, #0f172a 0%, #070b11 100%);
 }
 .solo-dungeon-trigger:hover {
     border-color: #3b82f6;
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
     transform: translateY(-3px);
 }
 .solo-dungeon-trigger:active {
     transform: translateY(1px) scale(0.96);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.9);
 }
 
-/* TEAM FIGHT правая позиция */
 .team-fight-trigger {
-    right: 25.4%; /* Сместили правее, перекрывая старый контур */
+    right: 25.1%; /* Идеальная посадка поверх правой рамки */
     border: 1px solid #4a1515;
     background: linear-gradient(180deg, #2a1212 0%, #110606 100%);
 }
 .team-fight-trigger:hover {
     border-color: #ef4444;
-    box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
     transform: translateY(-3px);
 }
 .team-fight-trigger:active {
     transform: translateY(1px) scale(0.96);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.9);
 }
 
-/* Тексты внутри кнопок */
 .overlay-main-title {
     font-family: 'Cinzel', serif;
     font-weight: 700;
@@ -274,7 +266,6 @@ header {
     color: #ffffff;
     margin-bottom: 4px;
     letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 .solo-dungeon-trigger .overlay-main-title { color: #60a5fa; }
 .team-fight-trigger .overlay-main-title { color: #f87171; }
@@ -311,18 +302,39 @@ header {
     z-index: 20;
     transition: all 0.15s ease;
 }
-
 .interactive-trial-overlay-btn:hover {
     background: linear-gradient(180deg, #f3d798 0%, #cfa85f 100%);
     box-shadow: 0 0 15px rgba(229, 193, 115, 0.4);
 }
-
 .interactive-trial-overlay-btn:active {
     transform: translateX(-50%) scale(0.96); 
 }
 
-/* Секция "Артефакты" */
-.about-dota {
+/* === ПАСХАЛКА: Стильный Observer Ward взамен водяного знака === */
+.dota-ward-easteregg {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    width: 24px;
+    height: 24px;
+    background: #111519;
+    border: 1px solid #e5c173;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #e5c173;
+    z-index: 30;
+    cursor: help;
+    box-shadow: 0 0 8px rgba(229, 193, 115, 0.6);
+    animation: wardGlow 2s ease-in-out infinite;
+}
+
+@keyframes wardGlow {
+    0%, 100% { box-shadow: 0 0 4px rgba(229, 193, 115, 0.4); opacity: 0.8; }
+    50% { box-shadow: 0 0 12px rgba(229, 193, 115, 0.9); opacity: 1; }
+} {
     background-color: #080b0e;
     padding: 80px 0;
     border-bottom: 2px solid #111519;
