@@ -1,4 +1,4 @@
-/* Глобальная игровая дизайн-система */
+/* Базовые настройки стиля игрового интерфейса */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #0c0f12; /* Фирменный темный лобби-цвет Доты */
+    background-color: #0c0f12;
     color: #b3b9c1;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -23,7 +23,7 @@ body {
 .text-center { text-align: center; }
 .gold-accent { color: #e5c173; }
 
-/* Стили заголовков игровых секций */
+/* Фэнтези заголовки (Cinzel) */
 .section-title {
     font-family: 'Cinzel', serif;
     font-size: 2.2rem;
@@ -44,9 +44,9 @@ body {
     margin: 15px auto 0 auto;
 }
 
-/* Игровая фиксированная панель навигации (Header) */
+/* Стабильная шапка ACCEPT MATCH */
 header {
-    background-color: rgba(17, 21, 25, 0.98);
+    background-color: #111519;
     border-bottom: 2px solid #2c353f;
     position: fixed;
     width: 100%;
@@ -72,12 +72,11 @@ header {
 
 .logo-dota span { color: #e5c173; }
 
-/* Контейнер статуса Accept Match */
 .match-ready-container {
     display: flex;
     align-items: center;
     gap: 15px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 6px 16px;
     border: 1px solid #2c353f;
     border-radius: 3px;
@@ -100,9 +99,11 @@ header {
     font-family: 'Cinzel', serif;
     font-size: 0.95rem;
     font-weight: bold;
+    color: #e5c173;
 }
 
 .btn-match-accept {
+    display: inline-block;
     text-decoration: none;
     background: linear-gradient(180deg, #10b981 0%, #065f46 100%);
     border: 1px solid #22c55e;
@@ -112,14 +113,13 @@ header {
     border-radius: 2px;
     text-transform: uppercase;
     font-size: 0.85rem;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     text-shadow: 1px 1px 1px black;
-    transition: all 0.2s;
 }
 
 .btn-match-accept:hover {
     background: linear-gradient(180deg, #16e59e 0%, #067f5e 100%);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.7);
 }
 
 .header-nav a {
@@ -129,140 +129,149 @@ header {
     font-weight: 600;
     margin-left: 20px;
     letter-spacing: 1px;
-    transition: color 0.3s;
 }
 
 .header-nav a:hover { color: #e5c173; }
 
-/* === НОВЫЙ ИММЕРСИВНЫЙ БЛОК ХОЛСТА (Hero Section) === */
+/* === НОВАЯ СТАБИЛЬНАЯ ИГРОВАЯ ЗОНА (Hero Section) === */
 .hero-dota {
     background-color: #0c0f12;
-    padding: 30px 0 60px 0;
+    padding: 20px 0 60px 0;
 }
 
-/* Главный масштабируемый 16:9 фрейм-алтарь */
-.dota-shrine-canvas {
-    position: relative;
+/* Главный широкоформатный фрейм для картинки */
+.hero-banner-frame {
     width: 100%;
-    max-width: 1100px; /* Идеальный размер на мониторе */
-    aspect-ratio: 16 / 9; /* Жестко держит пропорции, исключая размытие */
-    margin: 0 auto;
-    border: 3px solid #b59352; /* Древнее игровое золото */
-    box-shadow: 0 15px 50px rgba(0,0,0,0.9);
-    background-color: #000;
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
+    border: 3px solid #b59352;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.8);
+    background-color: #111519;
     overflow: hidden;
 }
 
-.canvas-base-img {
+.hero-main-img {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
-    object-fit: cover;
 }
 
-/* Эффект пульсирующей Арканы над PRACTICE MAKES PERFECT */
-.arcana-smoke-effect {
-    position: absolute;
-    top: 3%;
-    left: 10%;
-    width: 80%;
-    height: 15%;
-    pointer-events: none; /* Пропускает клики мыши */
-    background: radial-gradient(circle, rgba(147, 197, 253, 0.15) 0%, transparent 70%);
-    animation: arcanaPulse 3s ease-in-out infinite;
-    z-index: 5;
-}
-
-@keyframes arcanaPulse {
-    0%, 100% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.05); opacity: 1; }
-}
-
-/* === СУПЕР-ОВЕРЛЕИ КНОПОК ПОД РАЗМЕР КАРТИНКИ === */
-/* Эти блоки садятся миллиметр-в-миллиметр на холст и полностью скрывают старый кривой текст */
-.interactive-overlay-btn {
-    position: absolute;
-    bottom: 15.5%; /* Положение строго поверх фреймов на картинке */
-    height: 14.5%; /* Высота перекрытия */
-    width: 22.8%;  /* Ширина перекрытия */
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 12px;
-    border-radius: 3px;
-    z-index: 10;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-    transition: all 0.2s ease;
-}
-
-/* Левая кнопка: Solo Dungeon */
-.solo-dungeon-trigger {
-    left: 26.6%;
-    /* Фирменный синий градиент Доты, маскирующий дефекты нейросети */
-    background: linear-gradient(180deg, #131a22 0%, #0c1116 100%); 
-    border: 1px solid #33465a;
-}
-.solo-dungeon-trigger:hover {
-    border-color: #4ba3ff;
-    box-shadow: 0 0 15px rgba(75, 163, 255, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Правая кнопка: Team Fight */
-.team-fight-trigger {
-    right: 26.6%;
-    /* Фирменный багровый градиент Доты */
-    background: linear-gradient(180deg, #1e1212 0%, #130b0b 100%);
-    border: 1px solid #5a3333;
-}
-.team-fight-trigger:hover {
-    border-color: #ff4b4b;
-    box-shadow: 0 0 15px rgba(255, 75, 75, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Шрифты оверлей-текста поверх арта */
-.overlay-main-title {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: 1.1vw; /* Резиновый игровой размер от ширины экрана */
-    color: #ffffff;
-    margin-bottom: 2px;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 2px black;
-}
-.solo-dungeon-trigger .overlay-main-title { color: #8ec3ff; }
-.team-fight-trigger .overlay-main-title { color: #ff8e8e; }
-
-.overlay-sub-title {
-    font-size: 0.75vw;
-    font-weight: 600;
-    color: #e2e8f0;
-    text-transform: lowercase;
-}
-
-.overlay-parent-note {
-    font-size: 0.5vw;
-    color: #707f90;
-    font-style: italic;
-    margin-top: 1px;
+/* Интерактивный пульт выбора под картинкой — 100% надежность */
+.interactive-lobby-zone {
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
 }
 
-/* Абсолютно невидимая, но рабочая зона ссылки для Пробного Урока внизу холста */
-.interactive-trial-trigger {
-    position: absolute;
-    bottom: 5.5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 25%;
-    height: 6%;
-    z-index: 15;
-    cursor: pointer;
-    background: transparent;
+.choice-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 35px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
+
+/* Сетка настоящих физических кнопок-карточек */
+.decision-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.lobby-card {
+    flex: 1;
+    background: linear-gradient(180deg, #161c23 0%, #0f1318 100%);
+    border: 1px solid #2c353f;
+    padding: 25px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.card-icon-glow {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.card-main-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.card-sub-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 6px;
+}
+
+.card-parent-note {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    max-width: 280px;
+}
+
+.card-action-btn {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+/* Синяя тема для Solo Dungeon */
+.solo-card-style .card-icon-glow { color: #3b82f6; }
+.solo-card-style .card-main-title { color: #60a5fa; }
+.solo-card-style .card-action-btn { background: #2563eb; border-bottom: 3px solid #1d4ed8; }
+.solo-card-style:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transform: translateY(-4px);
+}
+
+/* Красная тема для TEAM FIGHT */
+.team-card-style .card-icon-glow { color: #ef4444; }
+.team-card-style .card-main-title { color: #f87171; }
+.team-card-style .card-action-btn { background: #dc2626; border-bottom: 3px solid #b91c1c; }
+.team-card-style:hover {
+    border-color: #ef4444;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    transform: translateY(-4px);
+}
+
+/* Кнопка бесплатного пробного урока */
+.btn-lobby-trial {
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(180deg, #e5c173 0%, #b59352 100%);
+    color: #111519 !important;
+    font-weight: 900;
+    padding: 15px 45px;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+}
+
+.btn-lobby-trial:hover { transform: scale(1.03); }
 
 /* Секция "Артефакты" */
 .about-dota {
@@ -304,7 +313,7 @@ header {
     line-height: 1.6;
 }
 
-/* Внутриигровой Магазин (Тарифы) */
+/* Секция тарифов лавки */
 .shop-dota {
     background: #0c0f12;
     padding: 80px 0;
@@ -385,7 +394,7 @@ header {
 .btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
 .team-buy:hover { background-color: #dc2626; border-color: #f87171; }
 
-/* Таверна Героев (Отзывы) */
+/* Таверна отзывов */
 .reviews-dota {
     background-color: #080b0e;
     padding: 80px 0;
@@ -452,7 +461,7 @@ header {
     line-height: 1.6;
 }
 
-/* Лобби Гильдии (Контакты) */
+/* Лобби контактов */
 .guild-dota {
     background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
     padding: 80px 0;
@@ -525,7 +534,7 @@ footer {
     color: #475569;
 }
 
-/* Адаптивность для телефонов */
+/* Мобильная адаптивность */
 @media (max-width: 768px) {
     .decision-grid, .features-dota, .shop-grid, .heroes-grid, .contact-row-dota {
         flex-direction: column;
@@ -534,7 +543,4 @@ footer {
     .arcana-review { grid-column: auto; }
     .header-flex { flex-direction: column; gap: 10px; text-align: center; }
     .header-nav { display: none; }
-    /* На маленьких смартфонах скрываем текстовые оверлеи холста, оставляя просто картинку кликабельной */
-    .overlay-sub-title, .overlay-parent-note { display: none; }
-    .overlay-main-title { font-size: 3vw; }
 }
