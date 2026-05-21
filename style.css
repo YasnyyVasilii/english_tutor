@@ -166,30 +166,28 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%; 
+    width: 100%; 
     height: 100%;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.4; /* Чуть прибавили общую сочность дыма */
+    opacity: 0.6; /* Придаем сочности цветному пламени */
 }
 
 .smoke-layer-1 {
-    /* СИНИЙ ТУМАН: Подсвечиваем левую сторону холста синим градиентом, смешанным с шумом */
-    background: radial-gradient(circle at 25% 65%, rgba(59, 130, 246, 0.4) 0%, transparent 55%), 
-                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
-    animation: driftSmokeLeft 28s linear infinite;
-    mix-blend-mode: screen;
+    /* СИНИЙ ОГОНЬ БАЗЫ: Color-dodge сохраняет тени черными, подсвечивая только синие искры слева */
+    background: radial-gradient(circle at 15% 70%, rgba(37, 99, 235, 0.6) 0%, transparent 50%);
+    animation: driftSmokeLeft 6s ease-in-out infinite alternate;
+    mix-blend-mode: color-dodge;
 }
 
 .smoke-layer-2 {
-    /* КРАСНЫЙ ТУМАН: Подсвечиваем правую сторону холста красным градиентом */
-    background: radial-gradient(circle at 75% 65%, rgba(239, 68, 68, 0.4) 0%, transparent 55%), 
-                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAyIiBudW1PY3RhdmVzPSIyIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==');
-    animation: driftSmokeRight 20s linear infinite;
-    mix-blend-mode: screen;
+    /* КРАСНЫЙ ОГОНЬ БАЗЫ: Подсвечивает только правые всполыхи, не делая картинку серой */
+    background: radial-gradient(circle at 85% 70%, rgba(220, 38, 38, 0.6) 0%, transparent 50%);
+    animation: driftSmokeRight 5s ease-in-out infinite alternate;
+    mix-blend-mode: color-dodge;
 }
 
-/* Пульсация букв + слабый, уходящий вверх дымок от надписи */
+/* Пульсация букв + аккуратный, уходящий вверх дымок от надписи */
 .arch-glow-pulse {
     position: absolute;
     top: 4%;
@@ -198,33 +196,26 @@ header {
     height: 18%;
     pointer-events: none;
     z-index: 3;
-    /* Замешиваем легкую текстуру мелкодисперсного дыма прямо в зону букв */
-    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.25) 0%, transparent 80%),
-                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAzNSIgbnVtT2N0YXZlcz0iMiIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
+    /* Мягкий золотой ореол вокруг букв арки */
+    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.3) 0%, transparent 70%);
     mix-blend-mode: color-dodge;
-    /* Запускаем сразу две анимации: одна пульсирует, вторая медленно сдвигает текстуру дыма вверх */
-    animation: archPulseEffect 4s ease-in-out infinite, archSmokeDrift 14s linear infinite;
+    animation: archPulseEffect 3s ease-in-out infinite;
 }
 
 @keyframes archPulseEffect {
-    0%, 100% { opacity: 0.3; transform: scale(0.99) translateY(0); }
-    50% { opacity: 0.9; transform: scale(1.01) translateY(-1px); } /* Эффект легкого парения */
+    0%, 100% { opacity: 0.4; transform: scale(0.99); }
+    50% { opacity: 1; transform: scale(1.01); }
 }
 
-/* Анимация, которая плавно двигает внутренний дым надписи вверх и немного в сторону */
-@keyframes archSmokeDrift {
-    0% { background-position: 0px 0px; }
-    100% { background-position: 40px -40px; } 
-}
-
+/* Мягкое покачивание пламени влево-вправо */
 @keyframes driftSmokeLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% { transform: translateX(-10px) translateY(5px); opacity: 0.7; }
+    100% { transform: translateX(10px) translateY(-5px); opacity: 1; }
 }
 
 @keyframes driftSmokeRight {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+    0% { transform: translateX(10px) translateY(-5px); opacity: 0.7; }
+    100% { transform: translateX(-10px) translateY(5px); opacity: 1; }
 }
 /* === КНОПКИ-ОВЕРЛЕИ (Плотный фон для маскировки рисунка сзади) === */
 .interactive-overlay-btn {
@@ -348,7 +339,10 @@ header {
 @keyframes wardGlow {
     0%, 100% { box-shadow: 0 0 4px rgba(229, 193, 115, 0.4); opacity: 0.8; }
     50% { box-shadow: 0 0 12px rgba(229, 193, 115, 0.9); opacity: 1; }
-} {
+}
+
+/* ПОЧИНЕНО: Секция Описание Артефактов */
+.about-dota {
     background-color: #080b0e;
     padding: 80px 0;
     border-bottom: 2px solid #111519;
