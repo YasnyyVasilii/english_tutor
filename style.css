@@ -7,11 +7,11 @@
 }
 
 body {
-    background-color: #0c0f12;
+    background-color: #0c0f12; 
     color: #b3b9c1;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    padding-top: 85px; /* Отступ под шапку */
+    padding-top: 85px; 
 }
 
 .container {
@@ -23,7 +23,7 @@ body {
 .text-center { text-align: center; }
 .gold-accent { color: #e5c173; }
 
-/* Фэнтези заголовки (Cinzel) */
+/* Фэнтези заголовки секций (Cinzel) */
 .section-title {
     font-family: 'Cinzel', serif;
     font-size: 2.2rem;
@@ -44,9 +44,9 @@ body {
     margin: 15px auto 0 auto;
 }
 
-/* Стабильная шапка ACCEPT MATCH */
+/* Фиксированная шапка ACCEPT MATCH */
 header {
-    background-color: #111519;
+    background-color: rgba(17, 21, 25, 0.98);
     border-bottom: 2px solid #2c353f;
     position: fixed;
     width: 100%;
@@ -115,11 +115,16 @@ header {
     font-size: 0.85rem;
     box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     text-shadow: 1px 1px 1px black;
+    transition: transform 0.1s ease, box-shadow 0.2s;
 }
 
 .btn-match-accept:hover {
     background: linear-gradient(180deg, #16e59e 0%, #067f5e 100%);
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.7);
+}
+
+.btn-match-accept:active {
+    transform: scale(0.96); /* Кликабельность */
 }
 
 .header-nav a {
@@ -133,145 +138,199 @@ header {
 
 .header-nav a:hover { color: #e5c173; }
 
-/* === НОВАЯ СТАБИЛЬНАЯ ИГРОВАЯ ЗОНА (Hero Section) === */
+/* === ИНТЕРАКТИВНЫЙ ИГРОВОЙ ХОЛСТ С АНИМАЦИЯМИ === */
 .hero-dota {
     background-color: #0c0f12;
-    padding: 20px 0 60px 0;
+    padding: 20px 0 40px 0;
 }
 
-/* Главный широкоформатный фрейм для картинки */
-.hero-banner-frame {
+.dota-shrine-canvas {
+    position: relative;
     width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 40px auto;
-    border: 3px solid #b59352;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.8);
-    background-color: #111519;
+    max-width: 1100px; 
+    aspect-ratio: 16 / 9; 
+    margin: 0 auto;
+    border: 3px solid #b59352; 
+    box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+    background-color: #000;
     overflow: hidden;
 }
 
-.hero-main-img {
+.canvas-base-img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
 }
 
-/* Интерактивный пульт выбора под картинкой — 100% надежность */
-.interactive-lobby-zone {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
+/* === АНИМАЦИЯ 1: Движущаяся фоновая дымка (Многослойная) === */
+.ambient-smoke {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Шире контейнера для бесконечного сдвига */
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.25;
 }
 
-.choice-title {
+.smoke-layer-1 {
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
+    animation: driftSmokeLeft 35s linear infinite;
+}
+
+.smoke-layer-2 {
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAyIiBudW1PY3RhdmVzPSIyIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==');
+    animation: driftSmokeRight 25s linear infinite;
+    opacity: 0.15;
+}
+
+@keyframes driftSmokeLeft {
+    0% { transform: translateX(0) scaleY(1); }
+    50% { transform: translateX(-25%) scaleY(1.1); }
+    100% { transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes driftSmokeRight {
+    0% { transform: translateX(-50%) cubic-bezier(0.4, 0, 0.2, 1); }
+    100% { transform: translateX(0); }
+}
+
+/* === АНИМАЦИЯ 2: Улучшенный, неоновый PRACTICE MAKES PERFECT === */
+.arcana-text-overlay {
+    position: absolute;
+    top: 8.5%;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: 'Cinzel', serif;
-    font-size: 2rem;
-    color: #ffffff;
-    margin-bottom: 35px;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-size: 3.55vw; 
+    font-weight: 900;
+    color: #f1f5f9;
+    letter-spacing: 4px;
+    z-index: 6;
+    pointer-events: none;
+    text-align: center;
+    width: 100%;
+    /* Эпическое многослойное золотое свечение */
+    animation: goldArcanaGlow 4s ease-in-out infinite;
 }
 
-/* Сетка настоящих физических кнопок-карточек */
-.decision-grid {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 40px;
+@keyframes goldArcanaGlow {
+    0%, 100% {
+        text-shadow: 0 0 12px rgba(229, 193, 115, 0.5), 0 0 25px rgba(229, 193, 115, 0.2);
+        color: #f8fafc;
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(245, 158, 11, 0.9), 0 0 45px rgba(245, 158, 11, 0.4), 0 0 4px rgba(255,255,255,0.9);
+        color: #ffffff;
+    }
 }
 
-.lobby-card {
-    flex: 1;
-    background: linear-gradient(180deg, #161c23 0%, #0f1318 100%);
-    border: 1px solid #2c353f;
-    padding: 25px 20px;
-    border-radius: 4px;
+/* === УЛУЧШЕНО: Кнопки-оверлеи (Идеальный размер, перекрытие арта) === */
+.interactive-overlay-btn {
+    position: absolute;
+    bottom: 15.2%; 
+    height: 14.8%; 
+    width: 23%;  /* Одинаковый, фиксированный размер для обеих кнопок */
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
+    padding: 4px 10px;
+    border-radius: 4px;
+    z-index: 10;
+    /* Плотный непрозрачный фон полностью блокирует текст на картинке под ними */
+    background: #0d1117; 
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.9), 0 10px 20px rgba(0,0,0,0.8);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-icon-glow {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
+/* Solo Dungeon стили */
+.solo-dungeon-trigger {
+    left: 26.5%;
+    border: 1px solid #1e3a8a;
+    background: linear-gradient(180deg, #0f172a 0%, #090d16 100%);
+}
+.solo-dungeon-trigger:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+.solo-dungeon-trigger:active {
+    transform: translateY(1px) scale(0.97); /* Физический отклик нажатия */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.9);
 }
 
-.card-main-title {
+/* TEAM FIGHT стили */
+.team-fight-trigger {
+    right: 26.5%;
+    border: 1px solid #5c1d1d;
+    background: linear-gradient(180deg, #2d1515 0%, #170b0b 100%);
+}
+.team-fight-trigger:hover {
+    border-color: #ef4444;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    transform: translateY(-2px);
+}
+.team-fight-trigger:active {
+    transform: translateY(1px) scale(0.97); /* Физический отклик нажатия */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.9);
+}
+
+/* Отрегулированные размеры текстов внутри кнопок */
+.overlay-main-title {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 1.4rem;
-    margin-bottom: 6px;
+    font-size: 1.15vw; 
+    color: #ffffff;
+    margin-bottom: 2px;
     letter-spacing: 1px;
 }
+.solo-dungeon-trigger .overlay-main-title { color: #60a5fa; }
+.team-fight-trigger .overlay-main-title { color: #f87171; }
 
-.card-sub-title {
-    font-size: 0.95rem;
+.overlay-sub-title {
+    font-size: 0.75vw;
     font-weight: 600;
-    color: #e2e8f0;
-    margin-bottom: 6px;
-}
-
-.card-parent-note {
-    font-size: 0.8rem;
-    color: #64748b;
-    font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.4;
-    max-width: 280px;
-}
-
-.card-action-btn {
-    margin-top: auto;
-    width: 100%;
+    color: #cbd5e1;
+    text-transform: lowercase;
     text-align: center;
-    padding: 10px 0;
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: white;
-    letter-spacing: 1px;
-    border-radius: 2px;
 }
 
-/* Синяя тема для Solo Dungeon */
-.solo-card-style .card-icon-glow { color: #3b82f6; }
-.solo-card-style .card-main-title { color: #60a5fa; }
-.solo-card-style .card-action-btn { background: #2563eb; border-bottom: 3px solid #1d4ed8; }
-.solo-card-style:hover {
-    border-color: #3b82f6;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-    transform: translateY(-4px);
-}
-
-/* Красная тема для TEAM FIGHT */
-.team-card-style .card-icon-glow { color: #ef4444; }
-.team-card-style .card-main-title { color: #f87171; }
-.team-card-style .card-action-btn { background: #dc2626; border-bottom: 3px solid #b91c1c; }
-.team-card-style:hover {
-    border-color: #ef4444;
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
-    transform: translateY(-4px);
-}
-
-/* Кнопка бесплатного пробного урока */
-.btn-lobby-trial {
-    display: inline-block;
+/* === УЛУЧШЕНО: Интерактивная кнопка Пробного Урока === */
+.interactive-trial-overlay-btn {
+    position: absolute;
+    bottom: 5.2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26%;
+    height: 6.2%;
     text-decoration: none;
     font-family: 'Cinzel', serif;
     background: linear-gradient(180deg, #e5c173 0%, #b59352 100%);
-    color: #111519 !important;
+    color: #0f1319 !important;
     font-weight: 900;
-    padding: 15px 45px;
-    font-size: 1.05rem;
-    letter-spacing: 1px;
+    font-size: 0.9vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 2px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    transition: transform 0.2s;
+    border: 1px solid #f3d798;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    z-index: 20;
+    transition: all 0.15s ease;
 }
 
-.btn-lobby-trial:hover { transform: scale(1.03); }
+.interactive-trial-overlay-btn:hover {
+    background: linear-gradient(180deg, #f3d798 0%, #cfa85f 100%);
+    box-shadow: 0 0 15px rgba(229, 193, 115, 0.4);
+}
+
+.interactive-trial-overlay-btn:active {
+    transform: translateX(-50%) scale(0.96); /* Кликабельность */
+}
 
 /* Секция "Артефакты" */
 .about-dota {
@@ -313,7 +372,7 @@ header {
     line-height: 1.6;
 }
 
-/* Секция тарифов лавки */
+/* Лавка тарифов (Shop) */
 .shop-dota {
     background: #0c0f12;
     padding: 80px 0;
@@ -389,7 +448,9 @@ header {
     border-radius: 2px;
     border: 1px solid #4f5d6e;
     font-size: 0.9rem;
+    transition: transform 0.1s ease;
 }
+.btn-buy:active, .btn-guild-tg:active, .btn-contact-link:active { transform: scale(0.97); }
 
 .btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
 .team-buy:hover { background-color: #dc2626; border-color: #f87171; }
@@ -461,7 +522,7 @@ header {
     line-height: 1.6;
 }
 
-/* Лобби контактов */
+/* Контакты */
 .guild-dota {
     background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
     padding: 80px 0;
@@ -534,7 +595,7 @@ footer {
     color: #475569;
 }
 
-/* Мобильная адаптивность */
+/* Адаптивность */
 @media (max-width: 768px) {
     .decision-grid, .features-dota, .shop-grid, .heroes-grid, .contact-row-dota {
         flex-direction: column;
@@ -543,4 +604,7 @@ footer {
     .arcana-review { grid-column: auto; }
     .header-flex { flex-direction: column; gap: 10px; text-align: center; }
     .header-nav { display: none; }
+    .overlay-main-title { font-size: 2.8vw; }
+    .overlay-sub-title { font-size: 1.8vw; }
+    .interactive-trial-overlay-btn { font-size: 2vw; }
 }
