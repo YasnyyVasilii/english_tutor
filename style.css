@@ -174,8 +174,8 @@ header {
     left: 45%;
     width: 10%;
     height: 50%;
-    background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.35) 0%, rgba(229, 193, 115, 0.15) 50%, transparent 80%);
-    mix-blend-mode: color-dodge;
+    background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.3) 0%, rgba(229, 193, 115, 0.15) 50%, transparent 80%);
+    mix-blend-mode: screen;
     filter: blur(6px);
     z-index: 1;
     animation: riftFlicker 3s ease-in-out infinite alternate;
@@ -191,22 +191,24 @@ header {
     z-index: 2;
 }
 
-/* СИНЯЯ ЭНЕРГИЯ: Аккуратно подсвечивает синие потоки арта слева, плавно меняя оттенок */
+/* СИНЯЯ ЭНЕРГИЯ: Плавно смещается внутри своих координат, имитируя движение жидкой плазмы */
 .smoke-layer-1 {
-    background: radial-gradient(circle at 18% 70%, rgba(37, 99, 235, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 25% 60%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
-    mix-blend-mode: color-dodge;
+    background: radial-gradient(circle at 18% 70%, rgba(37, 99, 235, 0.45) 0%, transparent 55%),
+                radial-gradient(circle at 25% 60%, rgba(59, 130, 246, 0.2) 0%, transparent 45%);
+    background-size: 135% 135%; /* Даем запас для внутреннего перетекания */
+    mix-blend-mode: screen; 
     filter: blur(4px); 
-    animation: pearlescentGlow 7s ease-in-out infinite alternate;
+    animation: pearlescentBlue 10s ease-in-out infinite alternate;
 }
 
-/* КРАСНАЯ ЭНЕРГИЯ: Аккуратно подсвечивает красные потоки арта справа */
+/* КРАСНАЯ ЭНЕРГИЯ: Плавно переливается и смещается на правой половине арта */
 .smoke-layer-2 {
-    background: radial-gradient(circle at 82% 70%, rgba(220, 38, 38, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 75% 65%, rgba(239, 68, 68, 0.15) 0%, transparent 40%);
-    mix-blend-mode: color-dodge;
+    background: radial-gradient(circle at 82% 70%, rgba(220, 38, 38, 0.45) 0%, transparent 55%),
+                radial-gradient(circle at 75% 65%, rgba(239, 68, 68, 0.2) 0%, transparent 45%);
+    background-size: 135% 135%;
+    mix-blend-mode: screen;
     filter: blur(4px);
-    animation: pearlescentGlow 8s ease-in-out infinite alternate 1s;
+    animation: pearlescentRed 11s ease-in-out infinite alternate;
 }
 
 /* Золотистая пульсация букв оригинальной арки */
@@ -219,37 +221,51 @@ header {
     pointer-events: none;
     z-index: 3;
     background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.25) 0%, transparent 75%);
-    mix-blend-mode: color-dodge;
-    animation: archPulseEffect 3s ease-in-out infinite;
+    mix-blend-mode: screen;
+    animation: archPulseEffect 4s ease-in-out infinite;
 }
 
 /* ==========================================================================
-   КЛЮЧЕВЫЕ КАДРЫ СЛАБОГО МЕРЦАНИЯ И ПЕРЕЛИВАНИЯ ЦВЕТА
+   КЛЮЧЕВЫЕ КАДРЫ ЖИВОГО И МЯГКОГО ПЕРЕЛИВАНИЯ (ОБНОВЛЕНО)
    ========================================================================== */
 
-/* Едва заметное дыхание центра */
+/* Дыхание центра */
 @keyframes riftFlicker {
     0% { opacity: 0.4; transform: scale(0.98); }
     100% { opacity: 1; transform: scale(1.02); }
 }
 
-/* Эффект слабого переливания (Плавный микро-сдвиг цвета на 8 градусов и прозрачности) */
-@keyframes pearlescentGlow {
+/* Перелив синего: плавно смещаем фон по осям и гоняем оттенок от индиго до морской волны */
+@keyframes pearlescentBlue {
     0% { 
         opacity: 0.4;
-        filter: blur(4px) hue-rotate(-4deg);
-        transform: scale(0.99);
+        background-position: 0% 0%;
+        filter: blur(5px) hue-rotate(-15deg);
     }
     100% { 
-        opacity: 0.75;
-        filter: blur(3px) hue-rotate(4deg);
-        transform: scale(1.01);
+        opacity: 0.85;
+        background-position: 12% 8%;
+        filter: blur(3px) hue-rotate(15deg); /* Ощутимый глазу мистический перелив */
+    }
+}
+
+/* Перелив красного: гоняем оттенок от бордового до огненно-оранжевого */
+@keyframes pearlescentRed {
+    0% { 
+        opacity: 0.4;
+        background-position: 100% 100%;
+        filter: blur(5px) hue-rotate(-12deg);
+    }
+    100% { 
+        opacity: 0.85;
+        background-position: 88% 92%;
+        filter: blur(3px) hue-rotate(18deg);
     }
 }
 
 @keyframes archPulseEffect {
-    0%, 100% { opacity: 0.4; transform: scale(0.995); }
-    50% { opacity: 0.9; transform: scale(1.005); }
+    0%, 100% { opacity: 0.3; transform: scale(0.996); }
+    50% { opacity: 0.85; transform: scale(1.004); }
 }
 /* ==========================================================================
    4. КНОПКИ-ОВЕРЛЕИ (100% МАСКИРОВКА И ИДЕАЛЬНЫЙ РАЗМЕР)
