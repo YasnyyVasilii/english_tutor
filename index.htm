@@ -13,46 +13,44 @@
     <header>
         <div class="container header-flex">
             <div class="logo-dota">ARTEM KOROVKIN // <span>ENGLISH MASTER</span></div>
-            <nav>
+            
+            <div class="match-ready-container">
+                <div class="match-ready-text">
+                    <span class="text-ready-status">YOUR CLASS IS READY</span>
+                    <span class="text-ready-mode gold-accent">ALL PICK</span>
+                </div>
+                <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-match-accept">ACCEPT</a>
+            </div>
+
+            <nav class="header-nav">
                 <a href="#about">БАЗА ЗНАНИЙ</a>
                 <a href="#services">ФОРМАТЫ</a>
                 <a href="#reviews">ГЕРОИ (ОТЗЫВЫ)</a>
-                <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-nav-dota">ACCEPT MATCH</a>
             </nav>
         </div>
     </header>
 
     <section class="hero-dota">
-        <div class="container text-center">
+        <div class="container">
             
-            <div class="hero-visual-block">
-                <img src="dota_hero.jpg" alt="Артем Коровкин, English Master" class="hero-shrine-img">
-            </div>
+            <div class="dota-shrine-canvas">
+                <img src="dota_hero.jpg" alt="The Sanctum of English" class="canvas-base-img">
+                
+                <div class="arcana-smoke-effect"></div>
 
-            <div class="hero-choice-content">
-                <h2 class="choice-title">КАКОЙ ПУТЬ ВЫ ВЫБЕРЕТЕ?</h2>
+                <a href="#solo-track" class="interactive-overlay-btn solo-dungeon-trigger">
+                    <div class="overlay-main-title"><i class="fas fa-key"></i> Solo Dungeon</div>
+                    <div class="overlay-sub-title">индивидуальное занятие</div>
+                    <div class="overlay-parent-note">(пояснение: для родителей, не говорящих по-английски)</div>
+                </a>
 
-                <div class="decision-grid">
-                    
-                    <div class="decision-card solo-zone">
-                        <div class="card-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                        <h3>ИНДИВИДУАЛЬНЫЙ ТРЕК</h3>
-                        <p>Максимальный фокус. Путь лидера и жесткая прокачка соло-скиллов.</p>
-                        <a href="#solo-track" class="btn-choice solo-btn">Solo Queue</a>
-                    </div>
+                <a href="#group-raid" class="interactive-overlay-btn team-fight-trigger">
+                    <div class="overlay-main-title"><i class="fas fa-shield-halved"></i> TEAM FIGHT</div>
+                    <div class="overlay-sub-title">групповое занятие минигруппа (3-5 человек)</div>
+                    <div class="overlay-parent-note">(пояснение: для родителей, не говорящих по-английски)</div>
+                </a>
 
-                    <div class="decision-card team-zone">
-                        <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
-                        <h3>ГРУППОВОЙ РЕЙД</h3>
-                        <p>Синергия. Командное взаимодействие, тимплей и живое общение.</p>
-                        <a href="#group-raid" class="btn-choice team-btn">Team Fight</a>
-                    </div>
-
-                </div>
-
-                <div class="lobby-actions">
-                    <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-lobby-trial">БЕСПЛАТНЫЙ ПРОБНЫЙ УРОК</a>
-                </div>
+                <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="interactive-trial-trigger" title="Записаться на пробный урок"></a>
             </div>
 
         </div>
@@ -89,7 +87,7 @@
                 <div id="solo-track" class="shop-item">
                     <div class="item-tier">TIER 1 // SOLO PRESTIGE</div>
                     <h3>Индивидуальное занятие</h3>
-                    <div class="gold-price">3 000 ₽ <span>/ 60 минут</span></div>
+                    <div class="gold-price">3 000 ₽ <span class="price-time">/ 60 минут</span></div>
                     <p class="item-desc">Персональный тренинг с Мастером. Полная подстройка под ваш темп, детальный разбор ошибок и кастомная траектория движения к вашей цели.</p>
                     <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-buy">ЗАПУСТИТЬ СОЛО СЕШН</a>
                 </div>
@@ -97,7 +95,7 @@
                 <div id="group-raid" class="shop-item featured-item">
                     <div class="item-tier">TIER 2 // TEAM CHAMPIONSHIP</div>
                     <h3>Мини-группа (3-5 человек)</h3>
-                    <div class="gold-price">1 499 ₽ <span>/ 60 минут</span></div>
+                    <div class="gold-price">1 499 ₽ <span class="price-time">/ 60 минут</span></div>
                     <p class="item-desc">Командный рейд. Глубокое погружение в языковую среду через ролевые кейсы, парные дискуссии и постоянный контролируемый интерактив с тиммейтами.</p>
                     <a href="https://telegram.me/GoldenTeacher13" target="_blank" class="btn-buy team-buy">ВСТУПИТЬ В РЕЙД</a>
                 </div>
@@ -111,7 +109,6 @@
             <h2 class="section-title">ЗАПИСИ ИЗ ТАВЕРНЫ ГЕРОЕВ</h2>
             
             <div class="heroes-grid">
-                
                 <div class="hero-review-card">
                     <div class="hero-avatar-name">
                         <div class="hero-icon-placeholder design-mirana"><i class="fas fa-moon"></i></div>
@@ -150,7 +147,7 @@
                         <div class="hero-icon-placeholder design-jugg"><i class="fas fa-gavel"></i></div>
                         <div>
                             <h4>Juggernaut</h4>
-                            <span class="hero-sub">Старшеклассник</span>
+                            <span class="hero-sub">Старшеклассник (Фокус)</span>
                         </div>
                     </div>
                     <p class="review-text">«Один из самых запоминающихся преподавателей из моей школьной жизни. С ним не только можно продуктивно поработать, где Артём Олегович всегда подскажет, поможет, но и просто хорошо провести время, где кстати Артём Олегович также старается общаться на Английском языке!»</p>
@@ -166,14 +163,12 @@
                     </div>
                     <p class="review-text">"Artem Olegovich is clearly a fabulous teacher, who can courage any student to study his subject with passion. Actually, I have never seen a real professional who would be not only a great teacher, but a cheerful and nice person as well. This description fits Artem Olegovich on one hundred percents! Highly recommend him!"</p>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section class="guild-dota">
         <div class="container text-center">
-            
             <div class="guild-box">
                 <h2>ПРИСОЕДИНЯЙТЕСЬ К ГИЛЬДИИ</h2>
                 <h3>📢 TELEGRAM-КАНАЛ: <span class="gold-accent">EnglishGaffer</span></h3>
@@ -188,7 +183,6 @@
                     <a href="tel:+79689055378" class="btn-contact-link phone-gold"><i class="fas fa-phone"></i> +7 968 905 5378</a>
                 </div>
             </div>
-
         </div>
     </section>
 
