@@ -170,20 +170,26 @@ header {
     height: 100%;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.35;
+    opacity: 0.4; /* Чуть прибавили общую сочность дыма */
 }
 
 .smoke-layer-1 {
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
-    animation: driftSmokeLeft 25s linear infinite;
+    /* СИНИЙ ТУМАН: Подсвечиваем левую сторону холста синим градиентом, смешанным с шумом */
+    background: radial-gradient(circle at 25% 65%, rgba(59, 130, 246, 0.4) 0%, transparent 55%), 
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAxNSIgbnVtT2N0YXZlcz0iMyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
+    animation: driftSmokeLeft 28s linear infinite;
+    mix-blend-mode: screen;
 }
 
 .smoke-layer-2 {
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAyIiBudW1PY3RhdmVzPSIyIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==');
-    animation: driftSmokeRight 18s linear infinite;
+    /* КРАСНЫЙ ТУМАН: Подсвечиваем правую сторону холста красным градиентом */
+    background: radial-gradient(circle at 75% 65%, rgba(239, 68, 68, 0.4) 0%, transparent 55%), 
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAyIiBudW1PY3RhdmVzPSIyIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjwvc3ZnPg==');
+    animation: driftSmokeRight 20s linear infinite;
+    mix-blend-mode: screen;
 }
 
-/* Золотистая пульсация букв арки (БЕЗ ГЕНЕРАЦИИ ТЕКСТА) */
+/* Пульсация букв + слабый, уходящий вверх дымок от надписи */
 .arch-glow-pulse {
     position: absolute;
     top: 4%;
@@ -192,14 +198,23 @@ header {
     height: 18%;
     pointer-events: none;
     z-index: 3;
-    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.25) 0%, transparent 80%);
-    mix-blend-mode: screen;
-    animation: archPulseEffect 3s ease-in-out infinite;
+    /* Замешиваем легкую текстуру мелкодисперсного дыма прямо в зону букв */
+    background: radial-gradient(ellipse at center, rgba(229, 193, 115, 0.25) 0%, transparent 80%),
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iODAwIj48ZmlsdGVyIGlkPSJuIj48dHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjAzNSIgbnVtT2N0YXZlcz0iMiIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgZmlsbD0idHJhbnNwYXJlbnQiLz48L3N2Zz4=');
+    mix-blend-mode: color-dodge;
+    /* Запускаем сразу две анимации: одна пульсирует, вторая медленно сдвигает текстуру дыма вверх */
+    animation: archPulseEffect 4s ease-in-out infinite, archSmokeDrift 14s linear infinite;
 }
 
 @keyframes archPulseEffect {
-    0%, 100% { opacity: 0.3; transform: scale(0.98); }
-    50% { opacity: 1; transform: scale(1.02); }
+    0%, 100% { opacity: 0.3; transform: scale(0.99) translateY(0); }
+    50% { opacity: 0.9; transform: scale(1.01) translateY(-1px); } /* Эффект легкого парения */
+}
+
+/* Анимация, которая плавно двигает внутренний дым надписи вверх и немного в сторону */
+@keyframes archSmokeDrift {
+    0% { background-position: 0px 0px; }
+    100% { background-position: 40px -40px; } 
 }
 
 @keyframes driftSmokeLeft {
@@ -211,7 +226,6 @@ header {
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
 }
-
 /* === КНОПКИ-ОВЕРЛЕИ (Плотный фон для маскировки рисунка сзади) === */
 .interactive-overlay-btn {
     position: absolute;
