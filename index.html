@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Sanctum of English | Артем Коровкин</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=3.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -240,7 +240,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Инициализация карусели Доты
         const swiper = new Swiper('.reviews-swiper', {
             slidesPerView: 1,
             spaceBetween: 25,
@@ -259,7 +258,6 @@
             }
         });
 
-        // Функция плавного раскрытия формы
         function toggleReviewForm() {
             const formContainer = document.getElementById('reviewFormContainer');
             formContainer.classList.toggle('active-form-shrine');
