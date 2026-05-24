@@ -375,17 +375,20 @@ header {
    УНИКАЛЬНЫЙ РАЗДЕЛИТЕЛЬ СТЫКОВ (ПРИГЛУШЁННЫЕ РУНЫ DOTA 2 С АНИМАЦИЕЙ)
    ========================================================================== */
 .dota-divider {
-    height: 120px; 
+    height: 160px; /* УВЕЛИЧИЛИ ВЫСОТУ: чтобы сам медальон с рунами стал крупнее и эпичнее */
     width: 100%;
-    margin-top: -60px; 
-    margin-bottom: 40px;
+    margin-top: -80px; /* Подтянули повыше, чтобы красиво перекрывать стык блоков */
+    margin-bottom: 20px;
     background-image: url('divider.png'); 
-    background-size: contain;
+    
+    /* ИСПРАВЛЕНО: заставляем линию растягиваться по ширине, а высоту подстраивать автоматически */
+    background-size: 100% auto; 
     background-position: center center;
     background-repeat: no-repeat;
     position: relative;
     z-index: 5;
     animation: dotaRunePulse 4s ease-in-out infinite alternate;
+    border-bottom: 1px solid rgba(181, 147, 82, 0.15); 
 }
 
 .dota-divider:hover {
