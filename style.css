@@ -789,17 +789,108 @@ footer {
     color: #475569;
 }
 
+/* ==========================================================================
+   АДАПТИВНОСТЬ ПОД СМАРТФОНЫ И ПЛАНШЕТЫ (ПРАВИЛЬНЫЙ UX)
+   ========================================================================== */
 @media (max-width: 768px) {
-    .decision-grid, .features-dota, .shop-grid, .contact-row-dota, .form-grid-dota {
+    /* 1. Схлопываем все сетки и флексы в одну колонку */
+    .decision-grid, 
+    .features-dota, 
+    .shop-grid, 
+    .contact-row-dota, 
+    .form-grid-dota {
         flex-direction: column;
         grid-template-columns: 1fr;
+        gap: 20px;
     }
-    .slider-shrine-container { padding: 0; }
-    .dota-arrow { display: none; } 
-    .dota-fantasy-form { padding: 20px; }
-    .header-flex { flex-direction: column; gap: 10px; text-align: center; }
-    .header-nav { display: none; }
-    .overlay-main-title { font-size: 2.8vw; }
-    .overlay-sub-title { font-size: 1.8vw; }
-    .interactive-trial-overlay-btn { font-size: 2vw; }
+
+    /* 2. Перестраиваем интерактивный холст под мобильный экран */
+    .dota-shrine-canvas {
+        display: flex;
+        flex-direction: column; /* Выстраиваем элементы внутри вертикально */
+        height: auto;
+        aspect-ratio: auto; /* Отменяем жесткие 16/9 для контейнера */
+        overflow: visible;  /* Разрешаем кнопкам выйти наружу */
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    /* Картинку-арт делаем самостоятельным красивым баннером */
+    .canvas-base-img {
+        aspect-ratio: 16 / 9;
+        border: 3px solid #b59352;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        margin-bottom: 15px;
+    }
+
+    /* Прячем эффекты плазмы на мобилках, чтобы они не накладывались на текст кнопок */
+    .ambient-smoke, .central-energy-rift, .arch-glow-pulse {
+        display: none;
+    }
+
+    /* 3. Превращаем скрытые кнопки в удобный вертикальный стек */
+    .interactive-overlay-btn {
+        position: relative; /* Выбиваем из абсолютного позиционирования */
+        width: 100%;
+        height: 65px; /* Удобная высота для нажатия жирным пальцем */
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        margin-bottom: 15px;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    /* Главная золотая кнопка пробного урока */
+    .interactive-trial-overlay-btn {
+        position: relative;
+        width: 100%;
+        height: 55px;
+        left: auto !important;
+        transform: none !important; /* Убираем центрирование через translateX */
+        bottom: auto !important;
+        margin-top: 5px;
+        font-size: 1rem !important;
+    }
+
+    /* Переводим шрифты кнопок из микро-vw в читаемые rem/px */
+    .overlay-main-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 2px;
+    }
+
+    .overlay-sub-title {
+        font-size: 0.8rem !important;
+        line-height: 1.2;
+    }
+
+    /* 4. Настройки слайдера отзывов и формы */
+    .slider-shrine-container { 
+        padding: 0; 
+    }
+    
+    .dota-arrow { 
+        display: none; /* На смартфонах стрелки не нужны, там листают свайпом пальца */
+    } 
+    
+    .dota-fantasy-form { 
+        padding: 25px 20px; 
+    }
+
+    /* 5. Фиксированная шапка */
+    .header-flex {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    
+    .header-nav { 
+        display: none; /* Прячем текстовое меню, чтобы не захламлять экран */
+    }
+    
+    .match-ready-container {
+        width: 100%;
+        justify-content: center;
+    }
 }
