@@ -11,8 +11,8 @@
 }
 
 body {
-    /* ИСПРАВЛЕНО: Восстановлен глубокий RPG-градиент с жесткой фиксацией на экране */
-    background: radial-gradient(circle at center, #13171c 0%, #0c0f12 100%) fixed;
+    /* ИСПРАВЛЕНО: Премиальный обсидиановый градиент теперь зафиксирован намертво */
+    background: radial-gradient(circle at center, #18202c 0%, #090c10 100%) fixed;
     color: #b3b9c1;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -370,37 +370,33 @@ header {
    УНИКАЛЬНЫЙ РАЗДЕЛИТЕЛЬ СТЫКОВ (УТОНЧЁННЫЕ РУНЫ С ВНУТРЕННИМ ТЛЕНИЕМ)
    ========================================================================== */
 .dota-divider {
-    /* ИСПРАВЛЕНО: Сделали линию изящной и тонкой, чтобы убрать грубое растяжение */
-    height: 80px;  
+    height: 120px;  
     width: 100%;
-    margin-top: -40px; /* Идеальное перекрытие стыков */
-    margin-bottom: 30px;
+    /* ИСПРАВЛЕНО: Ограничили ширину блока до 750px и отцентрировали через auto, чтобы усы были утонченными */
+    max-width: 750px; 
+    margin: -60px auto 30px auto; 
     background-image: url('divider.png'); 
-    
-    /* ИСПРАВЛЕНО: 'contain' гарантирует, что золотые усы утонченно сойдутся к центру */
     background-size: contain; 
     background-position: center center;
     background-repeat: no-repeat;
     position: relative;
     z-index: 5;
     
-    /* ЗАПУСКАЕМ СТАБИЛЬНОЕ ВНУТРЕННЕЕ МИСТИЧЕСКОЕ ТЛЕНИЕ КРИСТАЛЛОВ */
+    /* ЗАПУСКАЕМ ВНУТРЕННЕЕ МИСТИЧЕСКОЕ ТЛЕНИЕ КРИСТАЛЛОВ */
     animation: dotaRunePulse 4s ease-in-out infinite alternate;
     border-bottom: none; 
 }
-
-/* ИСПРАВЛЕНО: Полностью убран деструктивный hover-эффект. Руны больше не реагируют на мышь */
 
 @keyframes dotaRunePulse {
     0% {
         filter: drop-shadow(0 0 2px rgba(181, 147, 82, 0.05));
     }
     100% {
-        /* ИСПРАВЛЕНО: Качественные точечные неоновые тени строго под цвет каждого кристалла */
+        /* Точечные аккуратные неоновые тени строго под цвет каждого кристалла */
         filter: 
-            drop-shadow(-16px 0 14px rgba(59, 130, 246, 0.22))  /* СИНИЙ ТЛЕН (DD) */
-            drop-shadow(0 0 18px rgba(239, 68, 68, 0.28))       /* КРАСНЫЙ ТЛЕН (Haste) */
-            drop-shadow(16px 0 14px rgba(16, 185, 129, 0.22));  /* ЗЕЛЕНЫЙ ТЛЕН (Regen) */
+            drop-shadow(-16px 0 14px rgba(59, 130, 246, 0.25))  /* СИНИЙ ТЛЕН (DD) */
+            drop-shadow(0 0 18px rgba(239, 68, 68, 0.32))       /* КРАСНЫЙ ТЛЕН (Haste) */
+            drop-shadow(16px 0 14px rgba(16, 185, 129, 0.25));  /* ЗЕЛЕНЫЙ ТЛЕН (Regen) */
     }
 }
 
@@ -408,9 +404,10 @@ header {
    5. ИНФОРМАЦИОННЫЕ БЛОКИ САЙТА
    ========================================================================== */
 .about-dota {
-    background-color: #080b0e;
+    /* ИСПРАВЛЕНО: Убран плотный черный цвет, теперь просвечивает премиальный фон body */
+    background-color: transparent; 
     padding: 80px 0;
-    border-bottom: 2px solid #111519;
+    border-bottom: 1px solid rgba(44, 53, 63, 0.3);
 }
 
 .features-dota {
@@ -447,9 +444,10 @@ header {
 }
 
 .shop-dota {
-    background: #0c0f12;
+    /* ИСПРАВЛЕНО: Убран перекрывающий фон */
+    background: transparent; 
     padding: 80px 0;
-    border-bottom: 2px solid #1c242d;
+    border-bottom: 1px solid rgba(44, 53, 63, 0.3);
 }
 
 .shop-grid {
@@ -531,9 +529,10 @@ header {
    6. ТАВЕРНА ОТЗЫВОВ С ИНТЕРАКТИВНЫМ СЛАЙДЕРОМ
    ========================================================================== */
 .reviews-dota {
-    background: radial-gradient(circle at center, #111519 0%, #0c0f12 100%);
+    /* ИСПРАВЛЕНО: Сделали прозрачным, чтобы не ломать обсидиановую глубину сайта */
+    background: transparent; 
     padding: 90px 0;
-    border-bottom: 2px solid #1c242d;
+    border-bottom: 1px solid rgba(44, 53, 63, 0.3);
 }
 
 .slider-shrine-container {
@@ -542,13 +541,13 @@ header {
     margin-bottom: 50px;
 }
 
-/* ИСПРАВЛЕНО: Намертво зафиксировали flex-поведение внутренней ленты слайдера */
+/* ИСПРАВЛЕНО: Связываем высоту внутренних блоков самого Swiper */
 .reviews-swiper .swiper-wrapper {
     display: flex !important;
-    align-items: stretch !important; /* Автовыравнивание по самому высокому слайду */
+    align-items: stretch !important; 
 }
 
-/* ИСПРАВЛЕНО: Связующее звено. Заставляет сам слайд Swiper работать как flex-контейнер */
+/* ИСПРАВЛЕНО: Заставляем невидимый контейнер слайда работать как Flexbox */
 .reviews-swiper .swiper-slide {
     height: auto !important; 
     display: flex !important;
@@ -564,7 +563,7 @@ header {
     box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
     transition: all 0.3s ease;
     
-    /* ИСПРАВЛЕНО: Карточка принудительно забирает 100% высоты выпрямленного слайда */
+    /* ИСПРАВЛЕНО: Карточка забирает 100% высоты своего ряда и выравнивается по струнке */
     height: 100% !important;  
     width: 100%;
     display: flex !important;
@@ -607,7 +606,6 @@ header {
     letter-spacing: 0.5px;
 }
 
-/* Текст занимает всё свободное место, идеально выравнивая нижние края плашек */
 .review-text {
     font-style: italic;
     font-size: 0.95rem;
@@ -817,9 +815,10 @@ header {
    8. ГИЛЬДИЯ, КОНТАКТЫ И ПОДВАЛ
    ========================================================================== */
 .guild-dota {
-    background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
+    /* ИСПРАВЛЕНО: Убран глухой цвет */
+    background: transparent; 
     padding: 80px 0;
-    border-top: 2px solid #1c242d;
+    border-top: 1px solid rgba(44, 53, 63, 0.3);
 }
 
 .guild-box {
