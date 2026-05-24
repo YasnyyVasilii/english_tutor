@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* ==========================================================================
    1. БАЗОВЫЕ НАСТРОЙКИ ИГРОВОГО ИНТЕРФЕЙСА
    ========================================================================== */
@@ -9,7 +11,7 @@
 }
 
 body {
-    background-color: #0c0f12; /* Фирменный глубокий темный лобби-цвет Доты */
+    background-color: #0c0f12;
     color: #b3b9c1;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -25,7 +27,6 @@ body {
 .text-center { text-align: center; }
 .gold-accent { color: #e5c173; }
 
-/* Фэнтези заголовки секций (Cinzel) */
 .section-title {
     font-family: 'Cinzel', serif;
     font-size: 2.2rem;
@@ -167,7 +168,6 @@ header {
     object-fit: cover;
 }
 
-/* ЦЕНТРАЛЬНЫЙ РИФТ: Слабое фиолетовое дыхание строго за спиной Артема */
 .central-energy-rift {
     position: absolute;
     top: 25%;
@@ -181,32 +181,28 @@ header {
     animation: riftFlicker 3s ease-in-out infinite alternate;
 }
 
-/* ИСПРАВЛЕНО: Локальные контейнеры для энергии (Больше не размывают весь экран) */
 .ambient-smoke {
     position: absolute;
     top: 15%;
     height: 65%;
-    width: 40%; /* Занимают только свои боковые зоны */
+    width: 40%; 
     pointer-events: none;
     z-index: 2;
     mix-blend-mode: screen;
 }
 
-/* СИНЯЯ ЭНЕРГИЯ: Локализована слева, мягко сияет и переливается в бирюзу */
 .smoke-layer-1 {
     left: 2%;
     background: radial-gradient(circle at 40% 60%, rgba(37, 99, 235, 0.45) 0%, rgba(59, 130, 246, 0.15) 50%, transparent 70%);
     animation: pearlescentBlue 6s ease-in-out infinite alternate;
 }
 
-/* КРАСНАЯ ЭНЕРГИЯ: Локализована справа, мягко сияет и переливается в багровый */
 .smoke-layer-2 {
     right: 2%;
     background: radial-gradient(circle at 60% 60%, rgba(220, 38, 38, 0.45) 0%, rgba(239, 68, 68, 0.15) 50%, transparent 70%);
     animation: pearlescentRed 6s ease-in-out infinite alternate 0.5s;
 }
 
-/* Золотистая пульсация букв оригинальной арки */
 .arch-glow-pulse {
     position: absolute;
     top: 4%;
@@ -220,16 +216,11 @@ header {
     animation: archPulseEffect 3s ease-in-out infinite;
 }
 
-/* ==========================================================================
-   КЛЮЧЕВЫЕ КАДРЫ ЖИВОГО МЯГКОГО СИЯНИЯ (БЕЗ ПОТЕРЬ КОНТРАСТА)
-   ========================================================================== */
-
 @keyframes riftFlicker {
     0% { opacity: 0.4; transform: scale(0.97); }
     100% { opacity: 1; transform: scale(1.03); }
 }
 
-/* Мягкий синий перелив: плазма слегка дышит и меняет оттенок на 20 градусов */
 @keyframes pearlescentBlue {
     0% { 
         opacity: 0.3;
@@ -243,7 +234,6 @@ header {
     }
 }
 
-/* Мягкий красный перелив: плазма дышит в противофазе */
 @keyframes pearlescentRed {
     0% { 
         opacity: 0.3;
@@ -261,6 +251,7 @@ header {
     0%, 100% { opacity: 0.4; transform: scale(0.995); }
     50% { opacity: 1; transform: scale(1.005); }
 }
+
 /* ==========================================================================
    4. КНОПКИ-ОВЕРЛЕИ (100% МАСКИРОВКА И ИДЕАЛЬНЫЙ РАЗМЕР)
    ========================================================================== */
@@ -277,7 +268,6 @@ header {
     padding: 6px 12px;
     border-radius: 4px;
     z-index: 10;
-    /* Непрозрачный темный фон полностью блокирует просвечивание картинок сзади */
     background: #090d12 !important; 
     box-shadow: inset 0 0 20px rgba(0,0,0,0.95), 0 12px 24px rgba(0,0,0,0.85);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -293,9 +283,7 @@ header {
     box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
     transform: translateY(-3px);
 }
-.solo-dungeon-trigger:active {
-    transform: translateY(1px) scale(0.96);
-}
+.solo-dungeon-trigger:active { transform: translateY(1px) scale(0.96); }
 
 .team-fight-trigger {
     right: 25.1%; 
@@ -307,9 +295,7 @@ header {
     box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
     transform: translateY(-3px);
 }
-.team-fight-trigger:active {
-    transform: translateY(1px) scale(0.96);
-}
+.team-fight-trigger:active { transform: translateY(1px) scale(0.96); }
 
 .overlay-main-title {
     font-family: 'Cinzel', serif;
@@ -331,7 +317,6 @@ header {
     line-height: 1.3;
 }
 
-/* Интерактивная кнопка Пробного Урока */
 .interactive-trial-overlay-btn {
     position: absolute;
     bottom: 5.2%;
@@ -358,11 +343,8 @@ header {
     background: linear-gradient(180deg, #f3d798 0%, #cfa85f 100%);
     box-shadow: 0 0 15px rgba(229, 193, 115, 0.4);
 }
-.interactive-trial-overlay-btn:active {
-    transform: translateX(-50%) scale(0.96); 
-}
+.interactive-trial-overlay-btn:active { transform: translateX(-50%) scale(0.96); }
 
-/* === ПАСХАЛКА: Светящийся Observer Ward взамен водяного знака === */
 .dota-ward-easteregg {
     position: absolute;
     bottom: 2%;
@@ -389,7 +371,7 @@ header {
 }
 
 /* ==========================================================================
-   5. ИНФОРМАЦИОННЫЕ БЛОКИ САЙТА (ПОЧИНЕНО)
+   5. ИНФОРМАЦИОННЫЕ БЛОКИ САЙТА
    ========================================================================== */
 .about-dota {
     background-color: #080b0e;
@@ -430,7 +412,6 @@ header {
     line-height: 1.6;
 }
 
-/* Лавка тарифов (Shop) */
 .shop-dota {
     background: #0c0f12;
     padding: 80px 0;
@@ -509,12 +490,11 @@ header {
     transition: transform 0.1s ease;
 }
 .btn-buy:active, .btn-guild-tg:active, .btn-contact-link:active { transform: scale(0.97); }
-
 .btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
 .team-buy:hover { background-color: #dc2626; border-color: #f87171; }
 
 /* ==========================================================================
-   5. ТАВЕРНА ОТЗЫВОВ С ИНТЕРАКТИВНЫМ СЛАЙДЕРОМ И ФОРМОЙ
+   6. ТАВЕРНА ОТЗЫВОВ С ИНТЕРАКТИВНЫМ СЛАЙДЕРОМ
    ========================================================================== */
 .reviews-dota {
     background: radial-gradient(circle at center, #111519 0%, #0c0f12 100%);
@@ -522,17 +502,15 @@ header {
     border-bottom: 2px solid #1c242d;
 }
 
-/* Контейнер под слайдер со стрелками по бокам */
 .slider-shrine-container {
     position: relative;
     padding: 0 50px;
     margin-bottom: 50px;
 }
 
-/* Стилизация золотых Immortal-карточек отзывов */
 .hero-review-card {
     background: #111519;
-    border: 1px solid #b59352; /* Древнее золото */
+    border: 1px solid #b59352; 
     padding: 35px 25px;
     border-radius: 4px;
     height: auto;
@@ -548,7 +526,6 @@ header {
     border-color: #e5c173;
 }
 
-/* Стили элементов внутри карточки */
 .card-stars {
     color: #e5c173;
     font-size: 1.05rem;
@@ -586,7 +563,6 @@ header {
     line-height: 1.6;
 }
 
-/* Стилизация игровых стрелок навигации */
 .dota-arrow {
     position: absolute;
     top: 50%;
@@ -607,8 +583,7 @@ header {
     transition: all 0.2s;
 }
 
-.dota-arrow:after { display: none; } /* Отключаем дефолтные иконки Swiper */
-
+.dota-arrow:after { display: none; }
 .swiper-button-prev { left: 0; }
 .swiper-button-next { right: 0; }
 
@@ -619,7 +594,7 @@ header {
 }
 
 /* ==========================================================================
-   6. ФОРМА ОТПРАВКИ ОТЗЫВА (UI/UX ИНТЕРФЕЙС ЛОББИ)
+   7. ФОРМА ОТПРАВКИ ОТЗЫВА (UI/UX ИНТЕРФЕЙС ЛОББИ)
    ========================================================================== */
 .shrine-form-wrapper {
     max-width: 750px;
@@ -627,7 +602,6 @@ header {
     text-align: center;
 }
 
-/* Кнопка открытия формы */
 .btn-toggle-form {
     background: transparent;
     border: 1px dashed #b59352;
@@ -649,7 +623,6 @@ header {
     box-shadow: 0 0 20px rgba(181, 147, 82, 0.15);
 }
 
-/* Скрытое состояние формы (Аккордеон) */
 .review-form-container-collapsed {
     max-height: 0;
     overflow: hidden;
@@ -657,7 +630,6 @@ header {
     text-align: left;
 }
 
-/* Раскрытое состояние формы */
 .active-form-shrine {
     max-height: 800px;
     margin-top: 35px;
@@ -692,7 +664,6 @@ header {
     letter-spacing: 0.5px;
 }
 
-/* Поля ввода в стиле Доты */
 .dota-fantasy-form input[type="text"],
 .dota-fantasy-form select,
 .dota-fantasy-form textarea {
@@ -715,13 +686,11 @@ header {
     background: #0d131a;
 }
 
-/* Специфика выпадающего списка оценок */
 .gold-select {
     color: #e5c173 !important;
     font-weight: bold;
 }
 
-/* Кнопка отправки формы */
 .btn-submit-form {
     display: block;
     width: 100%;
@@ -744,12 +713,10 @@ header {
     box-shadow: 0 0 15px rgba(181, 147, 82, 0.4);
 }
 
-.btn-submit-form:active {
-    transform: scale(0.99);
-}
+.btn-submit-form:active { transform: scale(0.99); }
 
 /* ==========================================================================
-   7. ГИЛЬДИЯ, КОНТАКТЫ И ПОДВАЛ
+   8. ГИЛЬДИЯ, КОНТАКТЫ И ПОДВАЛ
    ========================================================================== */
 .guild-dota {
     background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
@@ -822,14 +789,13 @@ footer {
     color: #475569;
 }
 
-/* Адаптивность под смартфоны */
 @media (max-width: 768px) {
     .decision-grid, .features-dota, .shop-grid, .contact-row-dota, .form-grid-dota {
         flex-direction: column;
         grid-template-columns: 1fr;
     }
     .slider-shrine-container { padding: 0; }
-    .dota-arrow { display: none; } /* Скрываем стрелки на телефонах, там листают свайпом */
+    .dota-arrow { display: none; } 
     .dota-fantasy-form { padding: 20px; }
     .header-flex { flex-direction: column; gap: 10px; text-align: center; }
     .header-nav { display: none; }
