@@ -508,12 +508,13 @@ header {
     margin-bottom: 50px;
 }
 
+/* Стилизация золотых Immortal-карточек отзывов */
 .hero-review-card {
     background: #111519;
-    border: 1px solid #b59352; 
+    border: 1px solid #b59352; /* Древнее золото */
     padding: 35px 25px;
     border-radius: 4px;
-    height: auto;
+    height: 100%; /* ИСПРАВЛЕНО: Теперь Swiper заставит все карточки быть одного уровня */
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
@@ -525,74 +526,6 @@ header {
     box-shadow: 0 15px 30px rgba(181, 147, 82, 0.15);
     border-color: #e5c173;
 }
-
-.card-stars {
-    color: #e5c173;
-    font-size: 1.05rem;
-    margin-bottom: 15px;
-    text-shadow: 0 0 8px rgba(229, 193, 115, 0.5);
-}
-
-.stars-numeric {
-    color: #566f8a;
-    font-size: 0.85rem;
-    margin-left: 5px;
-}
-
-.hero-review-card h4 {
-    font-family: 'Cinzel', serif;
-    color: #ffffff;
-    font-size: 1.3rem;
-    margin-bottom: 4px;
-    letter-spacing: 1px;
-}
-
-.hero-sub {
-    font-size: 0.8rem;
-    color: #566f8a;
-    font-weight: 600;
-    margin-bottom: 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.review-text {
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #b3b9c1;
-    line-height: 1.6;
-}
-
-.dota-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: #111519;
-    border: 1px solid #b59352;
-    color: #e5c173;
-    font-size: 1.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 2px;
-    z-index: 10;
-    user-select: none;
-    transition: all 0.2s;
-}
-
-.dota-arrow:after { display: none; }
-.swiper-button-prev { left: 0; }
-.swiper-button-next { right: 0; }
-
-.dota-arrow:hover {
-    background: #b59352;
-    color: #111519;
-    box-shadow: 0 0 15px rgba(181, 147, 82, 0.5);
-}
-
 /* ==========================================================================
    7. ФОРМА ОТПРАВКИ ОТЗЫВА (UI/UX ИНТЕРФЕЙС ЛОББИ)
    ========================================================================== */
