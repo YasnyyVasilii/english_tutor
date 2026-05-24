@@ -235,6 +235,11 @@
             slidesPerView: 1,
             spaceBetween: 25,
             loop: true,
+            // ДОБАВЛЕНО: Связываем скрипт с золотыми гемами в HTML
+            pagination: {
+                el: '.dota-pagination',
+                clickable: true,
+            },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
@@ -243,7 +248,7 @@
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 } // Показываем ровно 3 карточки в ряд на компьютерах
             }
-        });
+        });;
 
         // Функция плавного раскрытия формы
         function toggleReviewForm() {
