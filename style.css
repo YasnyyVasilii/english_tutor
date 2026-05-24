@@ -513,50 +513,244 @@ header {
 .btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
 .team-buy:hover { background-color: #dc2626; border-color: #f87171; }
 
-/* Таверна отзывов */
+/* ==========================================================================
+   5. ТАВЕРНА ОТЗЫВОВ С ИНТЕРАКТИВНЫМ СЛАЙДЕРОМ И ФОРМОЙ
+   ========================================================================== */
 .reviews-dota {
-    background-color: #080b0e;
-    padding: 80px 0;
+    background: radial-gradient(circle at center, #111519 0%, #0c0f12 100%);
+    padding: 90px 0;
+    border-bottom: 2px solid #1c242d;
 }
 
-.heroes-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+/* Контейнер под слайдер со стрелками по бокам */
+.slider-shrine-container {
+    position: relative;
+    padding: 0 50px;
+    margin-bottom: 50px;
 }
 
-.arcana-review {
-    grid-column: span 2;
-    border: 1px solid #a855f7 !important;
-    background: linear-gradient(135deg, #111519 0%, #1e112c 100%) !important;
-}
-
+/* Стилизация золотых Immortal-карточек отзывов */
 .hero-review-card {
     background: #111519;
-    border: 1px solid #1c242d;
-    padding: 30px;
+    border: 1px solid #b59352; /* Древнее золото */
+    padding: 35px 25px;
     border-radius: 4px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
+    transition: all 0.3s ease;
+}
+
+.hero-review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(181, 147, 82, 0.15);
+    border-color: #e5c173;
+}
+
+/* Стили элементов внутри карточки */
+.card-stars {
+    color: #e5c173;
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px rgba(229, 193, 115, 0.5);
+}
+
+.stars-numeric {
+    color: #566f8a;
+    font-size: 0.85rem;
+    margin-left: 5px;
 }
 
 .hero-review-card h4 {
     font-family: 'Cinzel', serif;
-    color: white;
-    font-size: 1.1rem;
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
 }
 
 .hero-sub {
     font-size: 0.8rem;
     color: #566f8a;
+    font-weight: 600;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .review-text {
     font-style: italic;
     font-size: 0.95rem;
-    color: #9cb1c9;
+    color: #b3b9c1;
     line-height: 1.6;
 }
 
-/* Контакты */
+/* Стилизация игровых стрелок навигации */
+.dota-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #111519;
+    border: 1px solid #b59352;
+    color: #e5c173;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 2px;
+    z-index: 10;
+    user-select: none;
+    transition: all 0.2s;
+}
+
+.dota-arrow:after { display: none; } /* Отключаем дефолтные иконки Swiper */
+
+.swiper-button-prev { left: 0; }
+.swiper-button-next { right: 0; }
+
+.dota-arrow:hover {
+    background: #b59352;
+    color: #111519;
+    box-shadow: 0 0 15px rgba(181, 147, 82, 0.5);
+}
+
+/* ==========================================================================
+   6. ФОРМА ОТПРАВКИ ОТЗЫВА (UI/UX ИНТЕРФЕЙС ЛОББИ)
+   ========================================================================== */
+.shrine-form-wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Кнопка открытия формы */
+.btn-toggle-form {
+    background: transparent;
+    border: 1px dashed #b59352;
+    color: #e5c173;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 15px 35px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+.btn-toggle-form:hover {
+    background: rgba(181, 147, 82, 0.08);
+    border-style: solid;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(181, 147, 82, 0.15);
+}
+
+/* Скрытое состояние формы (Аккордеон) */
+.review-form-container-collapsed {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+}
+
+/* Раскрытое состояние формы */
+.active-form-shrine {
+    max-height: 800px;
+    margin-top: 35px;
+}
+
+.dota-fantasy-form {
+    background: #111519;
+    border: 1px solid #b59352;
+    padding: 35px;
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+}
+
+.form-grid-dota {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    color: #8da1b5;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Поля ввода в стиле Доты */
+.dota-fantasy-form input[type="text"],
+.dota-fantasy-form select,
+.dota-fantasy-form textarea {
+    background: #090d12;
+    border: 1px solid #2c353f;
+    color: #ffffff;
+    padding: 12px 15px;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.dota-fantasy-form input:focus,
+.dota-fantasy-form select:focus,
+.dota-fantasy-form textarea:focus {
+    outline: none;
+    border-color: #e5c173;
+    box-shadow: 0 0 10px rgba(229, 193, 115, 0.2);
+    background: #0d131a;
+}
+
+/* Специфика выпадающего списка оценок */
+.gold-select {
+    color: #e5c173 !important;
+    font-weight: bold;
+}
+
+/* Кнопка отправки формы */
+.btn-submit-form {
+    display: block;
+    width: 100%;
+    background: linear-gradient(180deg, #e5c173 0%, #b59352 100%);
+    border: 1px solid #f3d798;
+    color: #0f1319;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    padding: 15px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: all 0.2s;
+}
+
+.btn-submit-form:hover {
+    background: linear-gradient(180deg, #f3d798 0%, #cfa85f 100%);
+    box-shadow: 0 0 15px rgba(181, 147, 82, 0.4);
+}
+
+.btn-submit-form:active {
+    transform: scale(0.99);
+}
+
+/* ==========================================================================
+   7. ГИЛЬДИЯ, КОНТАКТЫ И ПОДВАЛ
+   ========================================================================== */
 .guild-dota {
     background: radial-gradient(circle at top, #161d24 0%, #0c0f12 100%);
     padding: 80px 0;
@@ -620,7 +814,6 @@ header {
     font-size: 0.95rem;
 }
 
-/* Подвал */
 footer {
     background-color: #06080a;
     border-top: 1px solid #111519;
@@ -631,11 +824,13 @@ footer {
 
 /* Адаптивность под смартфоны */
 @media (max-width: 768px) {
-    .decision-grid, .features-dota, .shop-grid, .heroes-grid, .contact-row-dota {
+    .decision-grid, .features-dota, .shop-grid, .contact-row-dota, .form-grid-dota {
         flex-direction: column;
         grid-template-columns: 1fr;
     }
-    .arcana-review { grid-column: auto; }
+    .slider-shrine-container { padding: 0; }
+    .dota-arrow { display: none; } /* Скрываем стрелки на телефонах, там листают свайпом */
+    .dota-fantasy-form { padding: 20px; }
     .header-flex { flex-direction: column; gap: 10px; text-align: center; }
     .header-nav { display: none; }
     .overlay-main-title { font-size: 2.8vw; }
