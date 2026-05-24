@@ -143,11 +143,10 @@ header {
 .header-nav a:hover { color: #e5c173; }
 
 /* ==========================================================================
-   3. ИГРОВОЙ ХОЛСТ И АНИМАЦИИ СЛАБОГО ПЕРЕЛИВАНИЯ (СИЯНИЕ ЖИВОЙ ПЛАЗМЫ)
+   3. ИГРОВОЙ ХОЛСТ И ПОТОКИ ЖИДКОЙ ПЛАЗМЫ (STYLE BOOT.DEV)
    ========================================================================== */
 .hero-dota {
-    /* ИСПРАВЛЕНО: Сделали прозрачным, чтобы сквозь него благородно просвечивал градиент body */
-    background-color: transparent; 
+    background-color: transparent; /* Просвечивает основной обсидиановый фон */
     padding: 20px 0 40px 0;
 }
 
@@ -168,6 +167,43 @@ header {
     height: 100%;
     display: block;
     object-fit: cover;
+}
+
+/* ИСПРАВЛЕНО: Сверхтехнологичный оверлей жидкой плазмы.
+   Он генерирует потоки энергии из центра к краям и искажает их через SVG-шум */
+.dota-shrine-canvas::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none; /* Пропускает клики по кнопкам */
+    mix-blend-mode: screen; /* Красиво подсвечивает нарисованный дым */
+    
+    /* Подключаем наш математический SVG-фильтр жидкого смещения */
+    filter: url(#liquid-plasma-filter);
+    
+    /* Запускаем бесконечный конвейер перетекания волн наружу */
+    background-image: radial-gradient(circle at 50% 51%, transparent 0%, rgba(59, 130, 246, 0.3) 30%, rgba(239, 68, 68, 0.3) 60%, transparent 80%);
+    background-size: 100% 100%;
+    animation: plasmaFlowOutward 7s linear infinite;
+}
+
+@keyframes plasmaFlowOutward {
+    0% {
+        /* Волны маленькие, зарождаются в центре (у шара) */
+        background-image: radial-gradient(circle at 50% 51%, transparent 0%, rgba(59, 130, 246, 0.4) 10%, rgba(239, 68, 68, 0.4) 20%, transparent 30%);
+    }
+    50% {
+        /* Энергия растекается по нарисованным вихрям вширь */
+        background-image: radial-gradient(circle at 50% 51%, transparent 20%, rgba(59, 130, 246, 0.35) 40%, rgba(239, 68, 68, 0.35) 60%, transparent 70%);
+    }
+    100% {
+        /* Потоки уходят к золотым краям рамки и растворяются */
+        background-image: radial-gradient(circle at 50% 51%, transparent 50%, rgba(59, 130, 246, 0) 70%, rgba(239, 68, 68, 0) 85%, transparent 100%);
+    }
 }
 
 .central-energy-rift {
@@ -376,7 +412,6 @@ header {
     max-width: 850px; 
     margin: 50px auto; 
     position: relative;
-    /* ИСПРАВЛЕНО: Тонкая лазерная нить, плавно затухающая к краям, как на boot.dev */
     background: linear-gradient(90deg, transparent, rgba(229, 193, 115, 0.5) 50%, transparent);
     display: flex;
     justify-content: center;
@@ -384,43 +419,32 @@ header {
     border: none !important;
 }
 
-/* Создаем центральное светящееся энерго-ядро (Вместо PNG-картинки) */
 .dota-divider::after {
     content: '';
     position: absolute;
     width: 7px;
     height: 7px;
-    background: #ef4444; /* Центральный рубиновый кристалл */
-    transform: rotate(45deg); /* Поворот в форму ромбического кристалла */
+    background: #ef4444; 
+    transform: rotate(45deg); 
     border-radius: 1px;
-    
-    /* ИСПРАВЛЕНО: Магия 3D-смещения по осям повернутого пространства. Клонируем ноды в синий и зеленый неон */
     box-shadow: 
-        -16px 16px 0 0 #3b82f6,    /* Левая синяя нода */
-        -16px 16px 12px 0 #3b82f6, /* Свечение синей ноды */
-        16px -16px 0 0 #10b981,    /* Правая зеленая нода */
-        16px -16px 12px 0 #10b981, /* Свечение зеленой ноды */
-        0 0 12px 2px #ef4444;      /* Свечение красного центра */
-        
+        -16px 16px 0 0 #3b82f6,    
+        -16px 16px 12px 0 #3b82f6, 
+        16px -16px 0 0 #10b981,    
+        16px -16px 12px 0 #10b981, 
+        0 0 12px 2px #ef4444;      
     animation: cyberRunePulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes cyberRunePulse {
-    0% {
-        opacity: 0.75;
-        transform: rotate(45deg) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: rotate(45deg) scale(1.1);
-    }
+    0% { opacity: 0.75; transform: rotate(45deg) scale(0.95); }
+    100% { opacity: 1; transform: rotate(45deg) scale(1.1); }
 }
 
 /* ==========================================================================
    5. ИНФОРМАЦИОННЫЕ БЛОКИ САЙТА
    ========================================================================== */
 .about-dota {
-    /* ИСПРАВЛЕНО: Убран плотный черный цвет, теперь просвечивает премиальный фон body */
     background-color: transparent; 
     padding: 80px 0;
     border-bottom: 1px solid rgba(44, 53, 63, 0.2);
@@ -460,7 +484,6 @@ header {
 }
 
 .shop-dota {
-    /* ИСПРАВЛЕНО: Убран перекрывающий фон */
     background: transparent; 
     padding: 80px 0;
     border-bottom: 1px solid rgba(44, 53, 63, 0.2);
@@ -544,7 +567,6 @@ header {
    6. ТАВЕРНА ОТЗЫВОВ С ИНТЕРАКТИВНЫМ СЛАЙДЕРОМ
    ========================================================================== */
 .reviews-dota {
-    /* ИСПРАВЛЕНО: Сделали прозрачным, чтобы не ломать обсидиановую глубину сайта */
     background: transparent; 
     padding: 90px 0;
     border-bottom: 1px solid rgba(44, 53, 63, 0.2);
@@ -556,20 +578,17 @@ header {
     margin-bottom: 50px;
 }
 
-/* ИСПРАВЛЕНО: Принудительно выпрямляем флекс-линию внутренней ленты Swiper */
 .reviews-swiper .swiper-wrapper {
     display: flex !important;
     align-items: stretch !important; 
 }
 
-/* ИСПРАВЛЕНО: Заставляем динамический контейнер слайда слушаться флекс-команд */
 .reviews-swiper .swiper-slide {
     height: auto !important; 
     display: flex !important;
     flex-direction: column !important;
 }
 
-/* Стилизация золотых Immortal-карточек отзывов */
 .hero-review-card {
     background: #111519;
     border: 1px solid #b59352; 
@@ -577,8 +596,6 @@ header {
     border-radius: 4px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
     transition: all 0.3s ease;
-    
-    /* ИСПРАВЛЕНО: Карточка забирает 100% высоты выровненного ряда Swiper */
     height: 100% !important;  
     width: 100%;
     display: flex !important;
@@ -629,7 +646,6 @@ header {
     flex-grow: 1; 
 }
 
-/* СТИЛИЗАЦИЯ СТРЕЛОК ПОД ИНТЕРФЕЙС DOTA 2 */
 .dota-arrow {
     position: absolute;
     top: 45%;
@@ -653,7 +669,6 @@ header {
 }
 
 .dota-arrow:after { display: none; } 
-
 .swiper-button-prev { left: 0; padding-right: 4px; }
 .swiper-button-next { right: 0; padding-left: 4px; }
 
@@ -667,7 +682,6 @@ header {
 
 .dota-arrow:active { transform: translateY(-50%) scale(0.95); }
 
-/* ЗОЛОТЫЕ РУНЫ ПАГИНАЦИИ */
 .dota-pagination {
     position: relative !important;
     bottom: auto !important;
@@ -705,211 +719,10 @@ header {
 }
 
 /* ==========================================================================
-   7. ФОРМА ОТПРАВКИ ОТЗЫВА (UI/UX ИНТЕРФЕЙС ЛОББИ)
-   ========================================================================== */
-.shrine-form-wrapper {
-    max-width: 750px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.btn-toggle-form {
-    background: transparent;
-    border: 1px dashed #b59352;
-    color: #e5c173;
-    font-family: 'Cinzel', serif;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 15px 35px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    border-radius: 2px;
-    transition: all 0.2s ease;
-}
-
-.btn-toggle-form:hover {
-    background: rgba(181, 147, 82, 0.08);
-    border-style: solid;
-    color: #ffffff;
-    box-shadow: 0 0 20px rgba(181, 147, 82, 0.15);
-}
-
-.review-form-container-collapsed {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    text-align: left;
-}
-
-.active-form-shrine {
-    max-height: 800px;
-    margin-top: 35px;
-}
-
-.dota-fantasy-form {
-    background: #111519;
-    border: 1px solid #b59352;
-    padding: 35px;
-    border-radius: 4px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-}
-
-.form-grid-dota {
-    display: flex;
-    gap: 20px;
-}
-
-.form-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    font-size: 0.8rem;
-    color: #8da1b5;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-}
-
-.dota-fantasy-form input[type="text"],
-.dota-fantasy-form select,
-.dota-fantasy-form textarea {
-    background: #090d12;
-    border: 1px solid #2c353f;
-    color: #ffffff;
-    padding: 12px 15px;
-    border-radius: 2px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-}
-
-.dota-fantasy-form input:focus,
-.dota-fantasy-form select:focus,
-.dota-fantasy-form textarea:focus {
-    outline: none;
-    border-color: #e5c173;
-    box-shadow: 0 0 10px rgba(229, 193, 115, 0.2);
-    background: #0d131a;
-}
-
-.gold-select {
-    color: #e5c173 !important;
-    font-weight: bold;
-}
-
-.btn-submit-form {
-    display: block;
-    width: 100%;
-    background: linear-gradient(180deg, #e5c173 0%, #b59352 100%);
-    border: 1px solid #f3d798;
-    color: #0f1319;
-    font-family: 'Cinzel', serif;
-    font-weight: 900;
-    padding: 15px 0;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    cursor: pointer;
-    border-radius: 2px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    transition: all 0.2s;
-}
-
-.btn-submit-form:hover {
-    background: linear-gradient(180deg, #f3d798 0%, #cfa85f 100%);
-    box-shadow: 0 0 15px rgba(181, 147, 82, 0.4);
-}
-
-.btn-submit-form:active { transform: scale(0.99); }
-
-/* ==========================================================================
-   8. ГИЛЬДИЯ, КОНТАКТЫ И ПОДВАЛ
-   ========================================================================== */
-.guild-dota {
-    /* ИСПРАВЛЕНО: Убран глухой цвет */
-    background: transparent; 
-    padding: 80px 0;
-    border-top: 1px solid rgba(44, 53, 63, 0.3);
-}
-
-.guild-box {
-    max-width: 700px;
-    margin: 0 auto 50px auto;
-    background-color: #111519;
-    border: 1px solid #2c353f;
-    padding: 40px;
-    border-radius: 4px;
-}
-
-.contacts-pitch {
-    margin-bottom: 25px !important;
-    color: #cbd5e1;
-    font-size: 1.05rem;
-}
-
-.contact-row-dota {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.btn-contact-link {
-    display: inline-block;
-    text-decoration: none;
-    background-color: #111519;
-    border: 1px solid #2c353f;
-    color: white;
-    padding: 14px 30px;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 2px;
-    transition: all 0.3s;
-}
-
-.btn-contact-link:hover {
-    border-color: #e5c173;
-    color: #e5c173;
-}
-
-.phone-gold {
-    border-color: #b59352;
-    color: #e5c173;
-}
-
-.btn-guild-tg {
-    display: inline-block;
-    text-decoration: none;
-    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
-    color: white;
-    font-weight: bold;
-    padding: 14px 35px;
-    border-radius: 2px;
-    border-bottom: 3px solid #075985;
-    font-size: 0.95rem;
-}
-
-footer {
-    background-color: #06080a;
-    border-top: 1px solid #111519;
-    padding: 30px 0;
-    font-size: 0.8rem;
-    color: #475569;
-}
-
-/* ==========================================================================
-   АДАПТИВНОСТЬ ПОД СМАРТФОНЫ И ПЛАНШЕТЫ (ПРАВИЛЬНЫЙ UX)
+   МОБИЛЬНАЯ АДАПТИВНОСТЬ
    ========================================================================== */
 @media (max-width: 768px) {
-    .decision-grid, 
-    .features-dota, 
-    .shop-grid, 
-    .contact-row-dota, 
-    .form-grid-dota {
+    .decision-grid, .features-dota, .shop-grid, .contact-row-dota, .form-grid-dota {
         flex-direction: column;
         grid-template-columns: 1fr;
         gap: 20px;
@@ -925,6 +738,9 @@ footer {
         border: none;
         box-shadow: none;
     }
+    
+    /* Отключаем тяжелые жидкие маски на смартфонах для экономии батареи */
+    .dota-shrine-canvas::after { display: none !important; }
 
     .canvas-base-img {
         aspect-ratio: 16 / 9;
@@ -933,17 +749,13 @@ footer {
         margin-bottom: 15px;
     }
 
-    .ambient-smoke, .central-energy-rift, .arch-glow-pulse {
-        display: none;
-    }
+    .ambient-smoke, .central-energy-rift, .arch-glow-pulse { display: none; }
 
     .interactive-overlay-btn {
         position: relative; 
         width: 100%;
         height: 65px; 
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
+        left: auto !important; right: auto !important; bottom: auto !important;
         margin-bottom: 15px;
         padding: 15px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.4);
@@ -953,39 +765,17 @@ footer {
         position: relative;
         width: 100%;
         height: 55px;
-        left: auto !important;
-        transform: none !important; 
-        bottom: auto !important;
+        left: auto !important; transform: none !important; bottom: auto !important;
         margin-top: 5px;
         font-size: 1rem !important;
     }
 
-    .overlay-main-title {
-        font-size: 1.2rem !important;
-        margin-bottom: 2px;
-    }
-
-    .overlay-sub-title {
-        font-size: 0.8rem !important;
-        line-height: 1.2;
-    }
-
+    .overlay-main-title { font-size: 1.2rem !important; margin-bottom: 2px; }
+    .overlay-sub-title { font-size: 0.8rem !important; line-height: 1.2; }
     .slider-shrine-container { padding: 0; }
     .dota-arrow { display: none; } 
-    .dota-fantasy-form { padding: 25px 20px; }
-    
     .dota-divider { display: none; }
-
-    .header-flex {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-    }
-    
+    .header-flex { flex-direction: column; gap: 12px; text-align: center; }
     .header-nav { display: none; }
-    
-    .match-ready-container {
-        width: 100%;
-        justify-content: center;
-    }
+    .match-ready-container { width: 100%; justify-content: center; }
 }
