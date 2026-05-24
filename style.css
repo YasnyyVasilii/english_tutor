@@ -372,6 +372,38 @@ header {
 }
 
 /* ==========================================================================
+   УНИКАЛЬНЫЙ РАЗДЕЛИТЕЛЬ СТЫКОВ (ПРИГЛУШЁННЫЕ РУНЫ DOTA 2 С АНИМАЦИЕЙ)
+   ========================================================================== */
+.dota-divider {
+    height: 120px; 
+    width: 100%;
+    margin-top: -60px; 
+    margin-bottom: 40px;
+    background-image: url('images/divider.png'); 
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 5;
+    animation: dotaRunePulse 4s ease-in-out infinite alternate;
+}
+
+.dota-divider:hover {
+    filter: brightness(1.15) drop-shadow(0 0 15px rgba(229, 193, 115, 0.35)) !important;
+    transform: scale(1.01);
+    transition: all 0.4s ease;
+}
+
+@keyframes dotaRunePulse {
+    0% {
+        filter: brightness(0.9) drop-shadow(0 0 5px rgba(181, 147, 82, 0.1));
+    }
+    100% {
+        filter: brightness(1.08) drop-shadow(0 0 20px rgba(181, 147, 82, 0.25));
+    }
+}
+
+/* ==========================================================================
    5. ИНФОРМАЦИОННЫЕ БЛОКИ САЙТА
    ========================================================================== */
 .about-dota {
@@ -509,13 +541,11 @@ header {
     margin-bottom: 50px;
 }
 
-/* ФИКС ВЫРАВНИВАНИЯ: Принудительно растягиваем внутренний контейнер Swiper */
 .reviews-swiper .swiper-wrapper {
     display: flex !important;
-    align-items: stretch !important; /* Выравнивает ВСЕ слайды по высоте самого длинного */
+    align-items: stretch !important; 
 }
 
-/* Стилизация золотых Immortal-карточек отзывов */
 .hero-review-card {
     background: #111519;
     border: 1px solid #b59352; 
@@ -523,8 +553,6 @@ header {
     border-radius: 4px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
     transition: all 0.3s ease;
-    
-    /* ФИКС ВЫРАВНИВАНИЯ: Сбрасываем высоту, позволяя флексбоксу управлять растяжением */
     height: auto !important; 
     display: flex !important;
     flex-direction: column;
@@ -566,7 +594,6 @@ header {
     letter-spacing: 0.5px;
 }
 
-/* Принудительно заставляем текст занимать всё свободное место, подталкивая карточку к растяжению */
 .review-text {
     font-style: italic;
     font-size: 0.95rem;
@@ -575,7 +602,6 @@ header {
     flex-grow: 1; 
 }
 
-/* СТИЛИЗАЦИЯ СТРЕЛОК ПОД ИНТЕРФЕЙС DOTA 2 (IMMORTAL GLOW) */
 .dota-arrow {
     position: absolute;
     top: 45%;
@@ -598,7 +624,7 @@ header {
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dota-arrow:after { display: none; } /* Отключаем дефолтный шрифт Swiper */
+.dota-arrow:after { display: none; } 
 
 .swiper-button-prev { left: 0; padding-right: 4px; }
 .swiper-button-next { right: 0; padding-left: 4px; }
@@ -611,11 +637,8 @@ header {
     text-shadow: 0 0 8px #e5c173;
 }
 
-.dota-arrow:active {
-    transform: translateY(-50%) scale(0.95);
-}
+.dota-arrow:active { transform: translateY(-50%) scale(0.95); }
 
-/* СТИЛИЗАЦИЯ ПОД ЗОЛОТЫЕ РУНЫ/ГЕМЫ ПАГИНАЦИИ */
 .dota-pagination {
     position: relative !important;
     bottom: auto !important;
@@ -630,7 +653,7 @@ header {
     height: 8px;
     background: #b59352 !important;
     border: 1px solid #735d34;
-    border-radius: 50%; /* Превращаем в круглые гем-сферы */
+    border-radius: 50%; 
     opacity: 0.35;
     margin: 0 !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -649,9 +672,10 @@ header {
     opacity: 1 !important;
     background: #e5c173 !important;
     border-color: #fff2d4;
-    transform: scale(1.3); /* Активный гем становится крупнее */
+    transform: scale(1.3); 
     box-shadow: 0 0 12px #e5c173, 0 0 4px #b59352;
 }
+
 /* ==========================================================================
    7. ФОРМА ОТПРАВКИ ОТЗЫВА (UI/UX ИНТЕРФЕЙС ЛОББИ)
    ========================================================================== */
@@ -852,7 +876,6 @@ footer {
    АДАПТИВНОСТЬ ПОД СМАРТФОНЫ И ПЛАНШЕТЫ (ПРАВИЛЬНЫЙ UX)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. Схлопываем все сетки и флексы в одну колонку */
     .decision-grid, 
     .features-dota, 
     .shop-grid, 
@@ -863,19 +886,17 @@ footer {
         gap: 20px;
     }
 
-    /* 2. Перестраиваем интерактивный холст под мобильный экран */
     .dota-shrine-canvas {
         display: flex;
-        flex-direction: column; /* Выстраиваем элементы внутри вертикально */
+        flex-direction: column; 
         height: auto;
-        aspect-ratio: auto; /* Отменяем жесткие 16/9 для контейнера */
-        overflow: visible;  /* Разрешаем кнопкам выйти наружу */
+        aspect-ratio: auto; 
+        overflow: visible;  
         background: transparent;
         border: none;
         box-shadow: none;
     }
 
-    /* Картинку-арт делаем самостоятельным красивым баннером */
     .canvas-base-img {
         aspect-ratio: 16 / 9;
         border: 3px solid #b59352;
@@ -883,16 +904,14 @@ footer {
         margin-bottom: 15px;
     }
 
-    /* Прячем эффекты плазмы на мобилках, чтобы они не накладывались на текст кнопок */
     .ambient-smoke, .central-energy-rift, .arch-glow-pulse {
         display: none;
     }
 
-    /* 3. Превращаем скрытые кнопки в удобный вертикальный стек */
     .interactive-overlay-btn {
-        position: relative; /* Выбиваем из абсолютного позиционирования */
+        position: relative; 
         width: 100%;
-        height: 65px; /* Удобная высота для нажатия жирным пальцем */
+        height: 65px; 
         left: auto !important;
         right: auto !important;
         bottom: auto !important;
@@ -901,19 +920,17 @@ footer {
         box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
-    /* Главная золотая кнопка пробного урока */
     .interactive-trial-overlay-btn {
         position: relative;
         width: 100%;
         height: 55px;
         left: auto !important;
-        transform: none !important; /* Убираем центрирование через translateX */
+        transform: none !important; 
         bottom: auto !important;
         margin-top: 5px;
         font-size: 1rem !important;
     }
 
-    /* Переводим шрифты кнопок из микро-vw в читаемые rem/px */
     .overlay-main-title {
         font-size: 1.2rem !important;
         margin-bottom: 2px;
@@ -924,29 +941,20 @@ footer {
         line-height: 1.2;
     }
 
-    /* 4. Настройки слайдера отзывов и формы */
-    .slider-shrine-container { 
-        padding: 0; 
-    }
+    .slider-shrine-container { padding: 0; }
+    .dota-arrow { display: none; } 
+    .dota-fantasy-form { padding: 25px 20px; }
     
-    .dota-arrow { 
-        display: none; /* На смартфонах стрелки не нужны, там листают свайпом пальца */
-    } 
-    
-    .dota-fantasy-form { 
-        padding: 25px 20px; 
-    }
+    /* Скрываем разделители на мобилках, чтобы сэкономить место экрана */
+    .dota-divider { display: none; }
 
-    /* 5. Фиксированная шапка */
     .header-flex {
         flex-direction: column;
         gap: 12px;
         text-align: center;
     }
     
-    .header-nav { 
-        display: none; /* Прячем текстовое меню, чтобы не захламлять экран */
-    }
+    .header-nav { display: none; }
     
     .match-ready-container {
         width: 100%;
