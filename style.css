@@ -143,10 +143,10 @@ header {
 .header-nav a:hover { color: #e5c173; }
 
 /* ==========================================================================
-   3. ИГРОВОЙ ХОЛСТ И ПОТОКИ ЖИДКОЙ ПЛАЗМЫ (STYLE BOOT.DEV)
+   3. ИГРОВОЙ ХОЛСТ И ПОТОКИ ЖИДКОЙ ПЛАЗМЫ (ПОЛНЫЙ ИСПРАВЛЕННЫЙ ВАРИАНТ)
    ========================================================================== */
 .hero-dota {
-    background-color: transparent; /* Просвечивает основной обсидиановый фон */
+    background-color: transparent; 
     padding: 20px 0 40px 0;
 }
 
@@ -169,40 +169,43 @@ header {
     object-fit: cover;
 }
 
-/* ИСПРАВЛЕНО: Сверхтехнологичный оверлей жидкой плазмы.
-   Он генерирует потоки энергии из центра к краям и искажает их через SVG-шум */
+/* ИСПРАВЛЕНО: Слой плазмы сделан с запасом по размеру (200%), 
+   а расширение идет плавно через scale() видеокарты, без резких рывков */
 .dota-shrine-canvas::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
     z-index: 4;
-    pointer-events: none; /* Пропускает клики по кнопкам */
-    mix-blend-mode: screen; /* Красиво подсвечивает нарисованный дым */
+    pointer-events: none; 
+    mix-blend-mode: screen; 
     
-    /* Подключаем наш математический SVG-фильтр жидкого смещения */
+    /* Подключаем наш SVG-фильтр жидкого смещения */
     filter: url(#liquid-plasma-filter);
     
-    /* Запускаем бесконечный конвейер перетекания волн наружу */
-    background-image: radial-gradient(circle at 50% 51%, transparent 0%, rgba(59, 130, 246, 0.3) 30%, rgba(239, 68, 68, 0.3) 60%, transparent 80%);
-    background-size: 100% 100%;
-    animation: plasmaFlowOutward 7s linear infinite;
+    /* Градиент зафиксирован статично и больше не прыгает дискретно */
+    background-image: radial-gradient(circle at center, transparent 15%, rgba(59, 130, 246, 0.4) 35%, rgba(239, 68, 68, 0.4) 55%, transparent 70%);
+    
+    /* Мягкое расширение волны наружу */
+    animation: plasmaFlowOutward 5s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
 }
 
 @keyframes plasmaFlowOutward {
     0% {
-        /* Волны маленькие, зарождаются в центре (у шара) */
-        background-image: radial-gradient(circle at 50% 51%, transparent 0%, rgba(59, 130, 246, 0.4) 10%, rgba(239, 68, 68, 0.4) 20%, transparent 30%);
+        transform: scale(0.3);
+        opacity: 0;
     }
-    50% {
-        /* Энергия растекается по нарисованным вихрям вширь */
-        background-image: radial-gradient(circle at 50% 51%, transparent 20%, rgba(59, 130, 246, 0.35) 40%, rgba(239, 68, 68, 0.35) 60%, transparent 70%);
+    15% {
+        opacity: 1; /* Рождение импульса в центре у глобуса */
+    }
+    85% {
+        opacity: 0.8; /* Плавное перетекание по линиям дыма */
     }
     100% {
-        /* Потоки уходят к золотым краям рамки и растворяются */
-        background-image: radial-gradient(circle at 50% 51%, transparent 50%, rgba(59, 130, 246, 0) 70%, rgba(239, 68, 68, 0) 85%, transparent 100%);
+        transform: scale(1.1);
+        opacity: 0; /* Растворение у золотых рамок */
     }
 }
 
