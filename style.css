@@ -541,11 +541,12 @@ header {
     margin-bottom: 50px;
 }
 
+/* ФИКС ВЫРАВНИВАНИЯ: Swiper-wrapper по канону использует Flexbox */
 .reviews-swiper .swiper-wrapper {
-    display: flex !important;
-    align-items: stretch !important; 
+    display: flex;
 }
 
+/* Стилизация золотых Immortal-карточек отзывов */
 .hero-review-card {
     background: #111519;
     border: 1px solid #b59352; 
@@ -553,7 +554,9 @@ header {
     border-radius: 4px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
     transition: all 0.3s ease;
-    height: auto !important; 
+    
+    /* ИСПРАВЛЕНО: height: 100% заставит карточки растянуться по высоте самого длинного слайда */
+    height: 100% !important; 
     display: flex !important;
     flex-direction: column;
 }
@@ -594,6 +597,7 @@ header {
     letter-spacing: 0.5px;
 }
 
+/* Текст занимает всё свободное место, выравнивая нижние края плашек */
 .review-text {
     font-style: italic;
     font-size: 0.95rem;
@@ -602,6 +606,7 @@ header {
     flex-grow: 1; 
 }
 
+/* СТИЛИЗАЦИЯ СТРЕЛОК ПОД ИНТЕРФЕЙС DOTA 2 */
 .dota-arrow {
     position: absolute;
     top: 45%;
@@ -639,6 +644,7 @@ header {
 
 .dota-arrow:active { transform: translateY(-50%) scale(0.95); }
 
+/* ЗОЛОТЫЕ РУНЫ ПАГИНАЦИИ */
 .dota-pagination {
     position: relative !important;
     bottom: auto !important;
@@ -661,7 +667,6 @@ header {
     cursor: pointer;
 }
 
-.dota-pagination .swiper-pagination-bullet-hover,
 .dota-pagination .swiper-pagination-bullet:hover {
     opacity: 0.7;
     background: #e5c173 !important;
