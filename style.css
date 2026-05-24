@@ -11,7 +11,7 @@
 }
 
 body {
-    /* ИСПРАВЛЕНО: Премиальный обсидиановый градиент теперь зафиксирован намертво */
+    /* ФОН ЗАФИКСИРОВАН: ГлубокийRPG-градиент с зафиксированным центром */
     background: radial-gradient(circle at center, #18202c 0%, #090c10 100%) fixed;
     color: #b3b9c1;
     font-family: 'Inter', sans-serif;
