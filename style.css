@@ -11,8 +11,8 @@
 }
 
 body {
-    /* ФОН ЗАФИКСИРОВАН: ГлубокийRPG-градиент с зафиксированным центром */
-    background: radial-gradient(circle at center, #18202c 0%, #090c10 100%) fixed;
+    /* ФОН ЗАФИКСИРОВАН: Глубокий RPG-градиент, который плавно тянется за скроллом */
+    background: radial-gradient(circle at center, #1b2636 0%, #080b10 100%) fixed;
     color: #b3b9c1;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -146,7 +146,8 @@ header {
    3. ИГРОВОЙ ХОЛСТ И АНИМАЦИИ СЛАБОГО ПЕРЕЛИВАНИЯ (СИЯНИЕ ЖИВОЙ ПЛАЗМЫ)
    ========================================================================== */
 .hero-dota {
-    background-color: #0c0f12;
+    /* ИСПРАВЛЕНО: Сделали прозрачным, чтобы сквозь него благородно просвечивал градиент body */
+    background-color: transparent; 
     padding: 20px 0 40px 0;
 }
 
@@ -367,36 +368,51 @@ header {
 }
 
 /* ==========================================================================
-   УНИКАЛЬНЫЙ РАЗДЕЛИТЕЛЬ СТЫКОВ (УТОНЧЁННЫЕ РУНЫ С ВНУТРЕННИМ ТЛЕНИЕМ)
+   УНИКАЛЬНЫЙ РАЗДЕЛИТЕЛЬ (PURE CSS / FANTASY-TECH STYLE — БЕЗ КАРТИНОК)
    ========================================================================== */
 .dota-divider {
-    height: 120px;  
+    height: 2px;
     width: 100%;
-    /* ИСПРАВЛЕНО: Ограничили ширину блока до 750px и отцентрировали через auto, чтобы усы были утонченными */
-    max-width: 750px; 
-    margin: -60px auto 30px auto; 
-    background-image: url('divider.png'); 
-    background-size: contain; 
-    background-position: center center;
-    background-repeat: no-repeat;
+    max-width: 850px; 
+    margin: 50px auto; 
     position: relative;
-    z-index: 5;
-    
-    /* ЗАПУСКАЕМ ВНУТРЕННЕЕ МИСТИЧЕСКОЕ ТЛЕНИЕ КРИСТАЛЛОВ */
-    animation: dotaRunePulse 4s ease-in-out infinite alternate;
-    border-bottom: none; 
+    /* ИСПРАВЛЕНО: Тонкая лазерная нить, плавно затухающая к краям, как на boot.dev */
+    background: linear-gradient(90deg, transparent, rgba(229, 193, 115, 0.5) 50%, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none !important;
 }
 
-@keyframes dotaRunePulse {
+/* Создаем центральное светящееся энерго-ядро (Вместо PNG-картинки) */
+.dota-divider::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: #ef4444; /* Центральный рубиновый кристалл */
+    transform: rotate(45deg); /* Поворот в форму ромбического кристалла */
+    border-radius: 1px;
+    
+    /* ИСПРАВЛЕНО: Магия 3D-смещения по осям повернутого пространства. Клонируем ноды в синий и зеленый неон */
+    box-shadow: 
+        -16px 16px 0 0 #3b82f6,    /* Левая синяя нода */
+        -16px 16px 12px 0 #3b82f6, /* Свечение синей ноды */
+        16px -16px 0 0 #10b981,    /* Правая зеленая нода */
+        16px -16px 12px 0 #10b981, /* Свечение зеленой ноды */
+        0 0 12px 2px #ef4444;      /* Свечение красного центра */
+        
+    animation: cyberRunePulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes cyberRunePulse {
     0% {
-        filter: drop-shadow(0 0 2px rgba(181, 147, 82, 0.05));
+        opacity: 0.75;
+        transform: rotate(45deg) scale(0.95);
     }
     100% {
-        /* Точечные аккуратные неоновые тени строго под цвет каждого кристалла */
-        filter: 
-            drop-shadow(-16px 0 14px rgba(59, 130, 246, 0.25))  /* СИНИЙ ТЛЕН (DD) */
-            drop-shadow(0 0 18px rgba(239, 68, 68, 0.32))       /* КРАСНЫЙ ТЛЕН (Haste) */
-            drop-shadow(16px 0 14px rgba(16, 185, 129, 0.25));  /* ЗЕЛЕНЫЙ ТЛЕН (Regen) */
+        opacity: 1;
+        transform: rotate(45deg) scale(1.1);
     }
 }
 
@@ -404,10 +420,9 @@ header {
    5. ИНФОРМАЦИОННЫЕ БЛОКИ САЙТА
    ========================================================================== */
 .about-dota {
-    /* ИСПРАВЛЕНО: Убран плотный черный цвет, теперь просвечивает премиальный фон body */
     background-color: transparent; 
     padding: 80px 0;
-    border-bottom: 1px solid rgba(44, 53, 63, 0.3);
+    border-bottom: 1px solid rgba(44, 53, 63, 0.2);
 }
 
 .features-dota {
@@ -444,10 +459,9 @@ header {
 }
 
 .shop-dota {
-    /* ИСПРАВЛЕНО: Убран перекрывающий фон */
     background: transparent; 
     padding: 80px 0;
-    border-bottom: 1px solid rgba(44, 53, 63, 0.3);
+    border-bottom: 1px solid rgba(44, 53, 63, 0.2);
 }
 
 .shop-grid {
@@ -521,7 +535,6 @@ header {
     font-size: 0.9rem;
     transition: transform 0.1s ease;
 }
-.btn-buy:active, .btn-guild-tg:active, .btn-contact-link:active { transform: scale(0.97); }
 .btn-buy:hover { background-color: #2563eb; border-color: #60a5fa; }
 .team-buy:hover { background-color: #dc2626; border-color: #f87171; }
 
@@ -529,10 +542,9 @@ header {
    6. ТАВЕРНА ОТЗЫВОВ С ИНТЕРАКТИВНЫМ СЛАЙДЕРОМ
    ========================================================================== */
 .reviews-dota {
-    /* ИСПРАВЛЕНО: Сделали прозрачным, чтобы не ломать обсидиановую глубину сайта */
     background: transparent; 
     padding: 90px 0;
-    border-bottom: 1px solid rgba(44, 53, 63, 0.3);
+    border-bottom: 1px solid rgba(44, 53, 63, 0.2);
 }
 
 .slider-shrine-container {
@@ -541,13 +553,13 @@ header {
     margin-bottom: 50px;
 }
 
-/* ИСПРАВЛЕНО: Связываем высоту внутренних блоков самого Swiper */
+/* ИСПРАВЛЕНО: Принудительно выпрямляем флекс-линию внутренней ленты Swiper */
 .reviews-swiper .swiper-wrapper {
     display: flex !important;
     align-items: stretch !important; 
 }
 
-/* ИСПРАВЛЕНО: Заставляем невидимый контейнер слайда работать как Flexbox */
+/* ИСПРАВЛЕНО: Заставляем динамический контейнер слайда слушаться флекс-команд */
 .reviews-swiper .swiper-slide {
     height: auto !important; 
     display: flex !important;
@@ -563,7 +575,7 @@ header {
     box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
     transition: all 0.3s ease;
     
-    /* ИСПРАВЛЕНО: Карточка забирает 100% высоты своего ряда и выравнивается по струнке */
+    /* ИСПРАВЛЕНО: Карточка забирает 100% высоты выровненного ряда Swiper */
     height: 100% !important;  
     width: 100%;
     display: flex !important;
@@ -815,7 +827,6 @@ header {
    8. ГИЛЬДИЯ, КОНТАКТЫ И ПОДВАЛ
    ========================================================================== */
 .guild-dota {
-    /* ИСПРАВЛЕНО: Убран глухой цвет */
     background: transparent; 
     padding: 80px 0;
     border-top: 1px solid rgba(44, 53, 63, 0.3);
