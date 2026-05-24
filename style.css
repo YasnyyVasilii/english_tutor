@@ -142,8 +142,8 @@ header {
 
 .header-nav a:hover { color: #e5c173; }
 
-/* ==========================================================================
-   3. ИГРОВОЙ ХОЛСТ И ПОТОКИ ЖИДКОЙ ПЛАЗМЫ (ПОЛНЫЙ ИСПРАВЛЕННЫЙ ВАРИАНТ)
+* ==========================================================================
+   3. ИГРОВОЙ ХОЛСТ И АТМОСФЕРНЫЕ ЭФФЕКТЫ (ПЛАЗМА УДАЛЕНА, СВЕЧЕНИЕ ОСТАВЛЕНО)
    ========================================================================== */
 .hero-dota {
     background-color: transparent; 
@@ -169,45 +169,7 @@ header {
     object-fit: cover;
 }
 
-/* ИСПРАВЛЕНО: Слой плазмы сделан с запасом по размеру (200%), 
-   а расширение идет плавно через scale() видеокарты, без резких рывков */
-.dota-shrine-canvas::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    z-index: 4;
-    pointer-events: none; 
-    mix-blend-mode: screen; 
-    
-    /* Подключаем наш SVG-фильтр жидкого смещения */
-    filter: url(#liquid-plasma-filter);
-    
-    /* Градиент зафиксирован статично и больше не прыгает дискретно */
-    background-image: radial-gradient(circle at center, transparent 15%, rgba(59, 130, 246, 0.4) 35%, rgba(239, 68, 68, 0.4) 55%, transparent 70%);
-    
-    /* Мягкое расширение волны наружу */
-    animation: plasmaFlowOutward 5s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
-}
-
-@keyframes plasmaFlowOutward {
-    0% {
-        transform: scale(0.3);
-        opacity: 0;
-    }
-    15% {
-        opacity: 1; /* Рождение импульса в центре у глобуса */
-    }
-    85% {
-        opacity: 0.8; /* Плавное перетекание по линиям дыма */
-    }
-    100% {
-        transform: scale(1.1);
-        opacity: 0; /* Растворение у золотых рамок */
-    }
-}
+/* Тяжелый слой жидкой плазмы полностью удален — система полностью разгружена! */
 
 .central-energy-rift {
     position: absolute;
@@ -244,6 +206,7 @@ header {
     animation: pearlescentRed 6s ease-in-out infinite alternate 0.5s;
 }
 
+/* ОСТАВЛЕНО: Плавное мерцание арки, которое подсвечивает надпись сверху */
 .arch-glow-pulse {
     position: absolute;
     top: 4%;
