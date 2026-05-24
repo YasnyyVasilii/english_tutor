@@ -504,27 +504,152 @@ header {
 
 .slider-shrine-container {
     position: relative;
-    padding: 0 50px;
+    padding: 0 55px;
     margin-bottom: 50px;
+}
+
+/* ФИКС ВЫРАВНИВАНИЯ: Принудительно растягиваем внутренний контейнер Swiper */
+.reviews-swiper .swiper-wrapper {
+    display: flex !important;
+    align-items: stretch !important; /* Выравнивает ВСЕ слайды по высоте самого длинного */
 }
 
 /* Стилизация золотых Immortal-карточек отзывов */
 .hero-review-card {
     background: #111519;
-    border: 1px solid #b59352; /* Древнее золото */
+    border: 1px solid #b59352; 
     padding: 35px 25px;
     border-radius: 4px;
-    height: 100%; /* ИСПРАВЛЕНО: Теперь Swiper заставит все карточки быть одного уровня */
-    display: flex;
-    flex-direction: column;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(181, 147, 82, 0.05);
     transition: all 0.3s ease;
+    
+    /* ФИКС ВЫРАВНИВАНИЯ: Сбрасываем высоту, позволяя флексбоксу управлять растяжением */
+    height: auto !important; 
+    display: flex !important;
+    flex-direction: column;
 }
 
 .hero-review-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(181, 147, 82, 0.15);
+    box-shadow: 0 15px 30px rgba(181, 147, 82, 0.2);
     border-color: #e5c173;
+}
+
+.card-stars {
+    color: #e5c173;
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px rgba(229, 193, 115, 0.5);
+}
+
+.stars-numeric {
+    color: #566f8a;
+    font-size: 0.85rem;
+    margin-left: 5px;
+}
+
+.hero-review-card h4 {
+    font-family: 'Cinzel', serif;
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+}
+
+.hero-sub {
+    font-size: 0.8rem;
+    color: #566f8a;
+    font-weight: 600;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Принудительно заставляем текст занимать всё свободное место, подталкивая карточку к растяжению */
+.review-text {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #b3b9c1;
+    line-height: 1.6;
+    flex-grow: 1; 
+}
+
+/* СТИЛИЗАЦИЯ СТРЕЛОК ПОД ИНТЕРФЕЙС DOTA 2 (IMMORTAL GLOW) */
+.dota-arrow {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(180deg, #182027 0%, #0f1317 100%);
+    border: 1px solid #b59352;
+    color: #e5c173;
+    font-size: 2rem;
+    font-family: 'Cinzel', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 3px;
+    z-index: 10;
+    user-select: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dota-arrow:after { display: none; } /* Отключаем дефолтный шрифт Swiper */
+
+.swiper-button-prev { left: 0; padding-right: 4px; }
+.swiper-button-next { right: 0; padding-left: 4px; }
+
+.dota-arrow:hover {
+    color: #ffffff;
+    border-color: #e5c173;
+    background: linear-gradient(180deg, #1f2933 0%, #141a21 100%);
+    box-shadow: 0 0 15px rgba(229, 193, 115, 0.4), inset 0 0 8px rgba(229, 193, 115, 0.2);
+    text-shadow: 0 0 8px #e5c173;
+}
+
+.dota-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* СТИЛИЗАЦИЯ ПОД ЗОЛОТЫЕ РУНЫ/ГЕМЫ ПАГИНАЦИИ */
+.dota-pagination {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.dota-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #b59352 !important;
+    border: 1px solid #735d34;
+    border-radius: 50%; /* Превращаем в круглые гем-сферы */
+    opacity: 0.35;
+    margin: 0 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.dota-pagination .swiper-pagination-bullet-hover,
+.dota-pagination .swiper-pagination-bullet:hover {
+    opacity: 0.7;
+    background: #e5c173 !important;
+    transform: scale(1.1);
+}
+
+.dota-pagination .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+    background: #e5c173 !important;
+    border-color: #fff2d4;
+    transform: scale(1.3); /* Активный гем становится крупнее */
+    box-shadow: 0 0 12px #e5c173, 0 0 4px #b59352;
 }
 /* ==========================================================================
    7. ФОРМА ОТПРАВКИ ОТЗЫВА (UI/UX ИНТЕРФЕЙС ЛОББИ)
